@@ -695,6 +695,7 @@ export function calculateBasePowerSMSS(
     break;
   // Triple Axel's damage doubles after each consecutive hit (20, 40, 60), this is a hack
   case 'Triple Axel':
+  case 'Triple Kick':
     basePower = move.hits === 2 ? 30 : move.hits === 3 ? 40 : 20;
     desc.moveBP = basePower;
     break;
@@ -1153,6 +1154,10 @@ export function calculateDefenseSMSS(
   if (field.hasWeather('Sand') && defender.hasType('Rock') && !hitsPhysical) {
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
+  }
+
+  if (move.named('Explosion', 'Self-Destruct', 'Misty Explosion')) {
+    defense = pokeRound(defense / 2);
   }
 
   const dfMods = calculateDfModsSMSS(

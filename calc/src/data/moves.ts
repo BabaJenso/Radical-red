@@ -1,3 +1,4 @@
+import { triggerAsyncId } from 'node:async_hooks';
 import * as I from '../data/interface';
 import {toID, DeepPartial, assignWithout, extend} from '../util';
 
@@ -4126,41 +4127,84 @@ const SS_PATCH: {[name: string]: DeepPartial<MoveData>} = {
 };
 
 const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Arm Thrust': {bp: 25, zp: 140, maxPower: 130},
+  'Attack Order': {bp: 120, zp: 190, maxPower: 140},
+  'Beat Up': {bp: 25, multihit: [2, 5], zp: 140, maxPower: 130},
   'Blaze Kick': {isKick: true},
   Bonemerang: {isBone: true},
   'Bone Club': {isBone: true},
   'Bone Rush': {isBone: true},
-  Cut: {isSword: true},
+  Chatter: {bp: 80, zp: 160, maxPower: 130},
+  Cut: {bp: 75, type: 'Steel', isSword: true, zp: 140, maxPower: 130},
+  'Diamond Storm': {category: 'Special'},
   'Double Kick': {isKick: true},
+  'Dragon Hammer': {bp: 100},
+  Explosion: {bp: 150},
   'False Swipe': {isSword: true},
+  Flash: {bp: 60, type:'Electric', category: 'Special', zp: 120, maxPower: 110},
   'Flash Cannon': {isBullet:true, isPulse: true},
   'Fury Cutter': {isSword: true},
   'High Horsepower': {isKick: true},
   'High Jump Kick': {isKick: true},
+  Inferno: {bp: 120, zp: 190, maxPower: 140},
+  'Jaw Lock': {bp: 90, type: 'Fighting', zp: 160, maxPower: 130},
   'Jump Kick': {isKick: true},
   'Leaf Blade': {isSword: true},
   'Low Kick': {isKick: true},
+  'Mega Drain': {bp: 60, zp: 120, maxPower: 110},
   'Mega Kick': {isKick: true},
+  'Needle Arm': {bp: 95, zp: 160, maxPower: 130},
   'Night Slash': {isSword: true},
-  Octazooka: {isPulse: true},
+  Octazooka: {bp: 80, isPulse: true, zp: 160, maxPower: 130},
+  'Parabolic Charge': {bp: 75, zp: 140, maxPower: 130},
+  'Poison Fang': {bp: 75, zp: 140, maxPower: 130},
   'Psycho Cut': {isSword: true},
   'Pyro Ball': {isKick: true},
   'Razor Shell': {isSword: true},
+  'Revelation Dance': {bp: 100, type: 'Fairy', zp: 160, maxPower: 130},
+  'Roar of Time': {bp: 80, zp: 160, maxPower: 130},
+  'Rock Smash': {bp: 60, zp: 120, maxPower: 110},
   'Rolling Kick': {isKick: true},
   'Sacred Sword': {isSword: true},
   'Secret Sword': {isSword: true},
+  'Self-Destruct': {bp: 100, zp: 180, maxPower: 130},
   'Shadow Bone': {isBone: true},
-  'Shadow Claw': {isSword: true},
+  'Shadow Claw': {bp: 80, isSword: true, zp: 160, maxPower: 130},
+  'Shadow Punch': {bp: 80, zp: 160, maxPower: 130},
   Slash: {isSword: true},
-  'Snipe Shot': {isBullet:true, isPulse: true},
+  'Snipe Shot': {bp: 70, isBullet:true, isPulse: true, zp: 140, maxPower: 120},
   'Solar Blade': {isSword: true},
   'Spike Cannon': {isBullet:true},
   'Stomp': {isKick: true},
   'Sucker Punch': {isPunch: true},
   'Triple Axel': {isKick: true},
-  'Triple Kick': {isKick: true},
+  'Triple Kick': {bp:20, isKick: true, zp: 120, maxPower: 140},
   'Trop Kick': {isKick: true},
-  'X-Scissor': {isSword: true}
+  'X-Scissor': {isSword: true},
+  'Aqua Fang': {
+    bp: 80,
+    type: 'Water',
+    category: 'Physical',
+    makesContact: true,
+    isBite: true,
+    zp: 160,
+    maxPower: 130
+  },
+  'Dark Hole': {
+    bp: 100,
+    type: 'Dark',
+    category: 'Special',
+    secondaries: true,
+    zp: 160,
+    maxPower: 130
+  },
+  'Soul Robbery': {
+    bp: 105,
+    type: 'Psychic',
+    category: 'Special',
+    zp: 180,
+    maxPower: 140
+  }
 }
 
 const SS: {[name: string]: MoveData} = extend(true, {}, SM, SS_PATCH, RR_PATCH);
