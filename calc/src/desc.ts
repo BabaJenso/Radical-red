@@ -116,6 +116,10 @@ export function getRecovery(
   if (move.named('G-Max Finale')) {
     recovery[0] = recovery[1] = Math.round(attacker.maxHP() / 6);
   }
+  // add Parasitic Waste drain flag
+  if (attacker.hasAbility('Parasitic Waste') && move.named('Gunk Shot', 'Sludge Bomb', 'Sludge Wave', 'Sludge', 'Poison Jab', 'Cross Poison')) {
+    move.drain = [1, 2]
+  }
 
   if (move.drain) {
     const percentHealed = move.drain[0] / move.drain[1];
