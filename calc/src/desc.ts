@@ -426,7 +426,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   if (defender.hasItem('Heavy-Duty Boots')) {
     return {damage, texts};
   }
-  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer')) {
+  if (defenderSide.isSR && !defender.hasAbility('Magic Guard', 'Mountaineer', 'Shield Dust')) {
     const rockType = gen.types.get('rock' as ID)!;
     const effectiveness =
       rockType.effectiveness[defender.types[0]]! *
@@ -434,7 +434,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
     damage += Math.floor((effectiveness * defender.maxHP()) / 8);
     texts.push('Stealth Rock');
   }
-  if (defenderSide.steelsurge && !defender.hasAbility('Magic Guard', 'Mountaineer')) {
+  if (defenderSide.steelsurge && !defender.hasAbility('Magic Guard', 'Shield Dust')) {
     const steelType = gen.types.get('steel' as ID)!;
     const effectiveness =
       steelType.effectiveness[defender.types[0]]! *
@@ -444,7 +444,7 @@ function getHazards(gen: Generation, defender: Pokemon, defenderSide: Side) {
   }
 
   if (!defender.hasType('Flying') &&
-      !defender.hasAbility('Magic Guard', 'Levitate') &&
+      !defender.hasAbility('Magic Guard', 'Levitate', 'Shield Dust') &&
       !defender.hasItem('Air Balloon')
   ) {
     if (defenderSide.spikes === 1) {
@@ -481,7 +481,7 @@ function getEndOfTurn(
   const texts = [];
 
   if (field.hasWeather('Sun', 'Harsh Sunshine')) {
-    if (defender.hasAbility('Dry Skin', 'Solar Power')) {
+    if (defender.hasAbility('Dry Skin')) {
       damage -= Math.floor(defender.maxHP() / 8);
       texts.push(defender.ability + ' damage');
     }
@@ -528,6 +528,9 @@ function getEndOfTurn(
       damage -= Math.floor(defender.maxHP() / 8);
       texts.push('Black Sludge damage');
     }
+  } else if (defender.hasAbility('Self Sufficient')) {
+    damage += Math.floor(defender.maxHP() / 16);
+    texts.push('Self Sufficient recovery');
   } else if (defender.hasItem('Sticky Barb')) {
     damage -= Math.floor(defender.maxHP() / 8);
     texts.push('Sticky Barb damage');
@@ -562,7 +565,7 @@ function getEndOfTurn(
     if (defender.hasAbility('Poison Heal')) {
       damage += Math.floor(defender.maxHP() / 8);
       texts.push('Poison Heal');
-    } else if (!defender.hasAbility('Magic Guard')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Toxic Boost')) {
       damage -= Math.floor(defender.maxHP() / (gen.num === 1 ? 16 : 8));
       texts.push('poison damage');
     }
@@ -570,14 +573,14 @@ function getEndOfTurn(
     if (defender.hasAbility('Poison Heal')) {
       damage += Math.floor(defender.maxHP() / 8);
       texts.push('Poison Heal');
-    } else if (!defender.hasAbility('Magic Guard')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Toxic Boost')) {
       texts.push('toxic damage');
     }
   } else if (defender.hasStatus('brn')) {
     if (defender.hasAbility('Heatproof')) {
       damage -= Math.floor(defender.maxHP() / (gen.num > 6 ? 32 : 16));
       texts.push('reduced burn damage');
-    } else if (!defender.hasAbility('Magic Guard')) {
+    } else if (!defender.hasAbility('Magic Guard', 'Flare Boost')) {
       damage -= Math.floor(defender.maxHP() / (gen.num === 1 || gen.num > 6 ? 16 : 8));
       texts.push('burn damage');
     }

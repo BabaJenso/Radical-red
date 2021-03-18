@@ -107,7 +107,6 @@ const DPP = ADV.concat([
   'Magic Guard',
   'Mold Breaker',
   'Motor Drive',
-  'Mountaineer',
   'Multitype',
   'No Guard',
   'Normalize',
@@ -293,7 +292,25 @@ const SS = SM.concat([
   'Wandering Spirit',
 ]);
 
-export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS];
+const RR = SS.concat([
+  'Blademaster',
+  'Striker',
+  'Feline Prowess',
+  'Flaming Soul',
+  'Sage Power',
+  'Surprise!',
+  'Raging Boxer',
+  'Bad Company',
+  'Parasitic Waste',
+  'Mountaineer',
+  'Bull Rush',
+  'Primal Armor',
+  'Self Sufficient',
+  'Fatal Precision',
+  'Bone Zone'
+])
+
+export const ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, RR];
 
 export class Abilities implements I.Abilities {
   private readonly gen: I.GenerationNum;

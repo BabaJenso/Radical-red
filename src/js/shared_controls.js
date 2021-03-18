@@ -222,13 +222,13 @@ $(".ability").bind("keyup change", function () {
 });
 
 $("#p1 .ability").bind("keyup change", function () {
-	autosetWeather($(this).val(), 0);
+	autosetWeather($(this).val(), 0, $("#p1 .item").val());
 	autosetTerrain($(this).val(), 0);
 });
 
 var lastManualWeather = "";
 var lastAutoWeather = ["", ""];
-function autosetWeather(ability, i) {
+function autosetWeather(ability, i, item) {
 	var currentWeather = $("input:radio[name='weather']:checked").val();
 	if (lastAutoWeather.indexOf(currentWeather) === -1) {
 		lastManualWeather = currentWeather;
@@ -262,6 +262,26 @@ function autosetWeather(ability, i) {
 	case "Delta Stream":
 		lastAutoWeather[i] = "Strong Winds";
 		$("#strong-winds").prop("checked", true);
+		break;
+	case "Forecast":
+		switch (item) {
+		case "Damp Rock":
+			lastAutoWeather[i] = "Rain";
+			$("#rain").prop("checked", true);
+			break;
+		case "Heat Rock":
+			lastAutoWeather[i] = "Sun";
+			$("#sun").prop("checked", true);
+			break;
+		case "Icy Rock":
+			lastAutoWeather[i] = "Hail";
+			$("#hail").prop("checked", true);
+			break;
+		case "Smooth Rock":
+			lastAutoWeather[i] = "Sand";
+			$("#sand").prop("checked", true);
+			break;
+		}
 		break;
 	default:
 		lastAutoWeather[i] = "";
@@ -310,6 +330,7 @@ function autosetTerrain(ability, i) {
 
 $("#p1 .item").bind("keyup change", function () {
 	autosetStatus("#p1", $(this).val());
+	autosetWeather($("#p1 .ability").val(), 0, $(this).val());
 });
 
 var lastManualStatus = {"#p1": "Healthy"};

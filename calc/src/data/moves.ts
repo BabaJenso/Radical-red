@@ -35,6 +35,9 @@ export interface MoveData {
   readonly isBullet?: boolean;
   readonly isSound?: boolean;
   readonly isPulse?: boolean;
+  readonly isSword?: boolean;
+  readonly isKick?: boolean;
+  readonly isBone?: boolean;
 }
 
 const RBY: {[name: string]: MoveData} = {
@@ -4122,7 +4125,45 @@ const SS_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Zing Zap': {maxPower: 130},
 };
 
-const SS: {[name: string]: MoveData} = extend(true, {}, SM, SS_PATCH);
+const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
+  'Blaze Kick': {isKick: true},
+  Bonemerang: {isBone: true},
+  'Bone Club': {isBone: true},
+  'Bone Rush': {isBone: true},
+  Cut: {isSword: true},
+  'Double Kick': {isKick: true},
+  'False Swipe': {isSword: true},
+  'Flash Cannon': {isBullet:true, isPulse: true},
+  'Fury Cutter': {isSword: true},
+  'High Horsepower': {isKick: true},
+  'High Jump Kick': {isKick: true},
+  'Jump Kick': {isKick: true},
+  'Leaf Blade': {isSword: true},
+  'Low Kick': {isKick: true},
+  'Mega Kick': {isKick: true},
+  'Night Slash': {isSword: true},
+  Octazooka: {isPulse: true},
+  'Psycho Cut': {isSword: true},
+  'Pyro Ball': {isKick: true},
+  'Razor Shell': {isSword: true},
+  'Rolling Kick': {isKick: true},
+  'Sacred Sword': {isSword: true},
+  'Secret Sword': {isSword: true},
+  'Shadow Bone': {isBone: true},
+  'Shadow Claw': {isSword: true},
+  Slash: {isSword: true},
+  'Snipe Shot': {isBullet:true, isPulse: true},
+  'Solar Blade': {isSword: true},
+  'Spike Cannon': {isBullet:true},
+  'Stomp': {isKick: true},
+  'Sucker Punch': {isPunch: true},
+  'Triple Axel': {isKick: true},
+  'Triple Kick': {isKick: true},
+  'Trop Kick': {isKick: true},
+  'X-Scissor': {isSword: true}
+}
+
+const SS: {[name: string]: MoveData} = extend(true, {}, SM, SS_PATCH, RR_PATCH);
 
 const LGPE_MOVES = [
   'Baddy Bad',
@@ -4221,6 +4262,9 @@ class Move implements I.Move {
     if (data.isBullet) this.flags.bullet = 1;
     if (data.isSound) this.flags.sound = 1;
     if (data.isPulse) this.flags.pulse = 1;
+    if (data.isSword) this.flags.sword = 1;
+    if (data.isKick) this.flags.kick = 1;
+    if (data.isBone) this.flags.bone = 1;
 
     assignWithout(this, data, Move.FLAGS);
 

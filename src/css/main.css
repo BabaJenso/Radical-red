@@ -130,11 +130,14 @@ a img {
 /* general page styling */
 html, body {
     font: 10pt Verdana, sans-serif;
-    background-color: white;
-    color: black;
+    background-color: #181818;
+    color: white;
     margin: 0;
     padding: 0;
     min-width: 100em;
+}
+a {
+    color: #58a6ff;
 }
 .wrapper {
     padding: 0 1em;
@@ -152,7 +155,7 @@ div.wrapper > div > span {
 }
 fieldset {
     float: left;
-    background-color: #F1F4F9;
+    background-color: #8A2235;
     border: 1px solid #AAAAAA;
 }
 legend {

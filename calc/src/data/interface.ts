@@ -91,6 +91,9 @@ export interface MoveFlags {
   punch?: 1 | 0;
   bullet?: 1 | 0;
   pulse?: 1 | 0;
+  sword?: 1 | 0;
+  kick?: 1 | 0;
+  bone?: 1 | 0;
 }
 
 export interface SelfOrSecondaryEffect {
