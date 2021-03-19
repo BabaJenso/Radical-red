@@ -8659,7 +8659,165 @@ var SS_PATCH = {
         baseSpecies: 'Zigzagoon'
     }
 };
-var SS = util_1.extend(true, {}, SM, SS_PATCH);
+var RR_PATCH = {
+    'Abomasnow-Mega': { bs: { df: 100, sd: 100, sp: 45 } },
+    'Absol-Mega': { types: ['Dark', 'Fairy'], abilities: { 0: 'Blademaster' } },
+    'Alcremie': { otherFormes: ['Alcremie-Mega', 'Alcremie-Gmax'] },
+    'Altaria': { bs: { hp: 85 } },
+    'Altaria-Mega': { bs: { hp: 85 } },
+    'Ampharos-Mega': { abilities: { 0: 'Thick Fat' } },
+    'Appletun': { otherFormes: ['Appletun-Mega', 'Appletun-Gmax'] },
+    'Audino-Mega': { abilities: { 0: 'Regenerator' } },
+    'Banette-Mega': { types: ['Ghost', 'Normal'] },
+    'Blastoise-Mega': { bs: { sa: 125 } },
+    'Blaziken-Mega': { bs: { at: 130, sa: 160 } },
+    'Butterfree': { otherFormes: ['Butterfree-Mega', 'Butterfree-Gmax'] },
+    'Camerupt': { bs: { hp: 90 } },
+    'Camerupt-Mega': { bs: { hp: 90, at: 100, df: 110, sd: 115 } },
+    'Centiskorch': { otherFormes: ['Centiskorch-Mega', 'Centiskorch-Gmax'] },
+    'Coalossal': { otherFormes: ['Coalossal-Mega', 'Coalossal-Gmax'] },
+    'Copperajah': { otherFormes: ['Copperajah-Mega', 'Copperajah-Gmax'] },
+    'Drednaw': { otherFormes: ['Drednaw-Mega', 'Drednaw-Gmax'] },
+    'Duraludon': { otherFormes: ['Duraludon-Mega', 'Duraludon-Gmax'] },
+    'Flapple': { otherFormes: ['Flapple-Mega', 'Flapple-Gmax'] },
+    'Gallade-Mega': { bs: { at: 155 }, abilities: { 0: 'Blademaster' } },
+    'Garbodor': { otherFormes: ['Garbodor-Mega', 'Garbodor-Gmax'] },
+    'Garchomp-Mega': { bs: { df: 105, sp: 102 } },
+    'Glalie-Mega': { bs: { at: 130, sa: 105 } },
+    'Houndoom-Mega': { bs: { at: 110 }, abilities: { 0: 'Dark Aura' } },
+    'Kingler': { otherFormes: ['Kingler-Mega', 'Kingler-Gmax'] },
+    'Lapras': { otherFormes: ['Lapras-Mega', 'Lapras-Gmax'] },
+    'Lucario-Mega': { bs: { at: 135 } },
+    'Machamp': { otherFormes: ['Machamp-Mega', 'Machamp-Gmax'] },
+    'Orbeetle': { otherFormes: ['Orbeetle-Mega', 'Orbeetle-Gmax'] },
+    'Salamence-Mega': { bs: { at: 135 } },
+    'Sandaconda': { otherFormes: ['Sandaconda-Mega', 'Sandaconda-Gmax'] },
+    'Sceptile-Mega': { bs: { at: 135, sa: 110 }, abilities: { 0: 'Technician' } },
+    'Slowbro-Mega': { bs: { df: 165 }, abilities: { 0: 'Regenerator' } },
+    'Snorlax': { otherFormes: ['Snorlax-Mega', 'Snorlax-Gmax'] },
+    'Steelix-Mega': { abilities: { 0: 'Heatproof' } },
+    'Toxtricity': { otherFormes: ['Toxtricity-Mega', 'Toxtricity-Gmax', 'Toxtricity-Low-Key', 'Toxtricity-Low-Key-Gmax'] },
+    'Alcremie-Mega': {
+        types: ['Fairy'],
+        bs: { hp: 65, at: 70, df: 90, sa: 140, sd: 131, sp: 84 },
+        weightkg: 0.5,
+        abilities: { 0: 'Self Sufficient' },
+        baseSpecies: 'Alcremie'
+    },
+    'Appletun-Mega': {
+        types: ['Grass', 'Dragon'],
+        bs: { hp: 110, at: 105, df: 100, sa: 135, sd: 100, sp: 40 },
+        weightkg: 13,
+        abilities: { 0: 'Contrary' },
+        baseSpecies: 'Appletun'
+    },
+    'Butterfree-Mega': {
+        types: ['Bug', 'Flying'],
+        bs: { hp: 60, at: 45, df: 100, sa: 140, sd: 100, sp: 80 },
+        weightkg: 32,
+        abilities: { 0: 'Compound Eyes' },
+        baseSpecies: 'Butterfree'
+    },
+    'Centiskorch-Mega': {
+        types: ['Fire', 'Bug'],
+        bs: { hp: 100, at: 150, df: 80, sa: 90, sd: 110, sp: 85 },
+        weightkg: 120,
+        abilities: { 0: 'Mountaineer' },
+        baseSpecies: 'Centiskorch'
+    },
+    'Coalossal-Mega': {
+        types: ['Steel', 'Fire'],
+        bs: { hp: 110, at: 80, df: 125, sa: 125, sd: 105, sp: 45 },
+        weightkg: 310.5,
+        abilities: { 0: 'Mountaineer' },
+        baseSpecies: 'Coalossal'
+    },
+    'Copperajah-Mega': {
+        types: ['Steel', 'Fighting'],
+        bs: { hp: 122, at: 155, df: 94, sa: 100, sd: 94, sp: 20 },
+        weightkg: 650,
+        abilities: { 0: 'Sheer Force' },
+        baseSpecies: 'Copperajah'
+    },
+    'Drednaw-Mega': {
+        types: ['Water', 'Fighting'],
+        bs: { hp: 90, at: 155, df: 125, sa: 48, sd: 98, sp: 85 },
+        weightkg: 115.5,
+        abilities: { 0: 'Strong Jaw' },
+        baseSpecies: 'Drednaw'
+    },
+    'Duraludon-Mega': {
+        types: ['Steel', 'Dragon'],
+        bs: { hp: 70, at: 95, df: 140, sa: 140, sd: 90, sp: 95 },
+        weightkg: 40,
+        abilities: { 0: 'Bad Company' },
+        baseSpecies: 'Duraludon'
+    },
+    'Flapple-Mega': {
+        types: ['Grass', 'Dragon'],
+        bs: { hp: 70, at: 145, df: 90, sa: 135, sd: 70, sp: 105 },
+        weightkg: 1,
+        abilities: { 0: 'Dragon\'s Maw' },
+        baseSpecies: 'Flapple'
+    },
+    'Garbodor-Mega': {
+        types: ['Poison'],
+        bs: { hp: 80, at: 135, df: 105, sa: 80, sd: 105, sp: 75 },
+        weightkg: 107.3,
+        abilities: { 0: 'Parasitic Waste' },
+        baseSpecies: 'Garbodor'
+    },
+    'Kingler-Mega': {
+        types: ['Water', 'Steel'],
+        bs: { hp: 55, at: 150, df: 125, sa: 50, sd: 70, sp: 110 },
+        weightkg: 60,
+        abilities: { 0: 'Tough Claws' },
+        baseSpecies: 'Kingler'
+    },
+    'Lapras-Mega': {
+        types: ['Water', 'Dragon'],
+        bs: { hp: 130, at: 105, df: 85, sa: 115, sd: 105, sp: 70 },
+        weightkg: 220,
+        abilities: { 0: 'Liquid Voice' },
+        baseSpecies: 'Lapras'
+    },
+    'Machamp-Mega': {
+        types: ['Fighting'],
+        bs: { hp: 90, at: 145, df: 100, sa: 65, sd: 105, sp: 75 },
+        weightkg: 130,
+        abilities: { 0: 'Raging Boxer' },
+        baseSpecies: 'Machamp'
+    },
+    'Orbeetle-Mega': {
+        types: ['Bug', 'Psychic'],
+        bs: { hp: 60, at: 45, df: 115, sa: 135, sd: 120, sp: 95 },
+        weightkg: 40.8,
+        abilities: { 0: 'Magic Guard' },
+        baseSpecies: 'Orbeetle'
+    },
+    'Sandaconda-Mega': {
+        types: ['Ground', 'Flying'],
+        bs: { hp: 72, at: 140, df: 160, sa: 85, sd: 90, sp: 81 },
+        weightkg: 65.5,
+        abilities: { 0: 'Aerilate' },
+        baseSpecies: 'Sandaconda'
+    },
+    'Snorlax-Mega': {
+        types: ['Normal', 'Grass'],
+        bs: { hp: 160, at: 160, df: 85, sa: 80, sd: 125, sp: 30 },
+        weightkg: 460,
+        abilities: { 0: 'Thick Fat' },
+        baseSpecies: 'Snorlax'
+    },
+    'Toxtricity-Mega': {
+        types: ['Electric', 'Poison'],
+        bs: { hp: 75, at: 120, df: 80, sa: 155, sd: 80, sp: 111 },
+        weightkg: 40,
+        abilities: { 0: 'Punk Rock' },
+        baseSpecies: 'Toxtricity'
+    }
+};
+var SS = util_1.extend(true, {}, SM, SS_PATCH, RR_PATCH);
 delete SS['Pikachu-Starter'];
 delete SS['Eevee-Starter'];
 exports.SPECIES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS];
