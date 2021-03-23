@@ -279,7 +279,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
     if (attacker.hasAbility('Parental Bond (Child)')) {
         baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 0x400) / 0x1000);
     }
-    if (attacker.hasAbility('Raging Boxer (2nd hit)')) {
+    if (attacker.hasAbility('ORAORAORAORA (2nd hit)')) {
         baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 0x800) / 0x1000);
     }
     var noWeatherBoost = defender.hasItem('Utility Umbrella');
@@ -344,9 +344,9 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         childDamage = calculateSMSS(gen, child, defender, move, field).damage;
         desc.attackerAbility = attacker.ability;
     }
-    else if (attacker.hasAbility('Raging Boxer') && move.hits === 1 && move.flags.punch && !isSpread) {
+    else if (attacker.hasAbility('ORAORAORAORA') && move.hits === 1 && move.flags.punch && !isSpread) {
         var child = attacker.clone();
-        child.ability = 'Raging Boxer (2nd hit)';
+        child.ability = 'ORAORAORAORA (2nd hit)';
         util_2.checkMultihitBoost(gen, child, defender, move, field, desc);
         childDamage = calculateSMSS(gen, child, defender, move, field).damage;
         desc.attackerAbility = attacker.ability;
@@ -992,7 +992,7 @@ function calculateFinalModsSMSS(gen, attacker, defender, move, field, desc, isCr
         defender.curHP() === defender.maxHP() &&
         !field.defenderSide.isSR && (!field.defenderSide.spikes || defender.hasType('Flying')) &&
         !attacker.hasAbility('Parental Bond (Child)') &&
-        !attacker.hasAbility('Raging Boxer (2nd hit)')) {
+        !attacker.hasAbility('ORAORAORAORA (2nd hit)')) {
         finalMods.push(0x800);
         desc.defenderAbility = defender.ability;
     }

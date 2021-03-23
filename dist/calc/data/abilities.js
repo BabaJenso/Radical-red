@@ -331,7 +331,7 @@ var RR = SS.concat([
     'Flaming Soul',
     'Sage Power',
     'Surprise!',
-    'Raging Boxer',
+    'ORAORAORAORA',
     'Bad Company',
     'Parasitic Waste',
     'Mountaineer',

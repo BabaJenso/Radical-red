@@ -4126,7 +4126,7 @@ var RR_PATCH = {
     'Dragon Hammer': { bp: 100 },
     Explosion: { bp: 150 },
     'False Swipe': { isSword: true },
-    Flash: { bp: 60, type: 'Electric', category: 'Special' },
+    Flash: { bp: 50, type: 'Electric', category: 'Special' },
     'Flash Cannon': { isBullet: true, isPulse: true },
     'Fury Cutter': { isSword: true },
     'High Horsepower': { isKick: true },

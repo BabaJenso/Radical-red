@@ -397,7 +397,7 @@ export function calculateSMSS(
   if (attacker.hasAbility('Parental Bond (Child)')) {
     baseDamage = pokeRound(OF32(baseDamage * 0x400) / 0x1000);
   }
-  if (attacker.hasAbility('Raging Boxer (2nd hit)')) {
+  if (attacker.hasAbility('ORAORAORAORA (2nd hit)')) {
     baseDamage = pokeRound(OF32(baseDamage * 0x800) / 0x1000);
   }
 
@@ -481,9 +481,9 @@ export function calculateSMSS(
     checkMultihitBoost(gen, child, defender, move, field, desc);
     childDamage = calculateSMSS(gen, child, defender, move, field).damage as number[];
     desc.attackerAbility = attacker.ability;
-  } else if (attacker.hasAbility('Raging Boxer') && move.hits === 1 && move.flags.punch && !isSpread) {
+  } else if (attacker.hasAbility('ORAORAORAORA') && move.hits === 1 && move.flags.punch && !isSpread) {
     const child = attacker.clone();
-    child.ability = 'Raging Boxer (2nd hit)' as AbilityName;
+    child.ability = 'ORAORAORAORA (2nd hit)' as AbilityName;
     checkMultihitBoost(gen, child, defender, move, field, desc);
     childDamage = calculateSMSS(gen, child, defender, move, field).damage as number[];
     desc.attackerAbility = attacker.ability;
@@ -1273,7 +1273,7 @@ export function calculateFinalModsSMSS(
       defender.curHP() === defender.maxHP() &&
       !field.defenderSide.isSR && (!field.defenderSide.spikes || defender.hasType('Flying')) &&
       !attacker.hasAbility('Parental Bond (Child)') &&
-      !attacker.hasAbility('Raging Boxer (2nd hit)')
+      !attacker.hasAbility('ORAORAORAORA (2nd hit)')
   ) {
     finalMods.push(0x800);
     desc.defenderAbility = defender.ability;
