@@ -1005,7 +1005,7 @@ $(".gen").change(function () {
 	$("select.ability").find("option").remove().end().append("<option value=\"\">(other)</option>" + abilityOptions);
 	var itemOptions = getSelectOptions(items, true);
 	$("select.item").find("option").remove().end().append("<option value=\"\">(none)</option>" + itemOptions);
-
+	
 	$(".set-selector").val(getFirstValidSetOption().id);
 	$(".set-selector").change();
 });
@@ -1016,7 +1016,7 @@ function getFirstValidSetOption() {
 	for (var i = 1; i < sets.length; i++) {
 		if (sets[i].id && sets[i].id.indexOf('(Blank Set)') === -1) return sets[i];
 	}
-	return undefined;
+	return {text: 'Houndoom (Blank Set)', id: 'Houndoom (Blank Set)'};
 }
 
 $(".notation").change(function () {
