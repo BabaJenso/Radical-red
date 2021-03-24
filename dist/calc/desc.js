@@ -400,13 +400,13 @@ function getEndOfTurn(gen, attacker, defender, move, field) {
             texts.push('Black Sludge damage');
         }
     }
-    else if (defender.hasAbility('Self Sufficient')) {
-        damage += Math.floor(defender.maxHP() / 16);
-        texts.push('Self Sufficient recovery');
-    }
     else if (defender.hasItem('Sticky Barb')) {
         damage -= Math.floor(defender.maxHP() / 8);
         texts.push('Sticky Barb damage');
+    }
+    if (defender.hasAbility('Self Sufficient')) {
+        damage += Math.floor(defender.maxHP() / 16);
+        texts.push('Self Sufficient recovery');
     }
     if (field.defenderSide.isSeeded) {
         if (!defender.hasAbility('Magic Guard')) {
