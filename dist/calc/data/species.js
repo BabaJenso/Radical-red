@@ -38,6 +38,7 @@ var __values = (this && this.__values) || function(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 var e_1, _a;
+var _b, _c, _d, _e;
 exports.__esModule = true;
 
 var util_1 = require("../util");
@@ -8767,7 +8768,7 @@ var RR_PATCH = {
     'Komala': { bs: { hp: 75 } },
     'Kricketune': { bs: { at: 95, df: 71, sd: 71, sp: 80 } },
     'Lanturn': { bs: { at: 50, df: 65, sa: 90 } },
-    'Lapras': { otherFormes: ['Lapras-Mega', 'Lapras-Gmax'] },
+    'Lapras': { types: ['Water', 'Dragon'], otherFormes: ['Lapras-Mega', 'Lapras-Gmax'] },
     'Leafeon': { bs: { at: 130, df: 110 } },
     'Ledian': { types: ['Bug', 'Fighting'], bs: { at: 90, sa: 35, sd: 100 } },
     'Lickilicky': { bs: { at: 95, sp: 30 } },
@@ -9024,6 +9025,22 @@ var RR_PATCH = {
 var SS = util_1.extend(true, {}, SM, SS_PATCH, RR_PATCH);
 delete SS['Pikachu-Starter'];
 delete SS['Eevee-Starter'];
+var gmaxes = ["Alcremie", "Appletun", "Blastoise", "Butterfree", "Centiskorch", "Charizard", "Cinderace", "Coalossal", "Copperajah", "Corviknight", "Drednaw", "Duraludon", "Eevee", "Flapple", "Garbodor", "Gengar", "Grimmsnarl", "Hatterene", "Inteleon", "Kingler", "Lapras", "Machamp", "Melmetal", "Meowth", "Orbeetle", "Pikachu", "Rillaboom", "Sandaconda", "Snorlax", "Toxtricity", "Urshifu", "Venusaur"];
+gmaxes.forEach(function (p) {
+    var _a, _b;
+    var i = (_a = SS[p].otherFormes) === null || _a === void 0 ? void 0 : _a.indexOf(p + "-Gmax");
+    if (i != undefined)
+        (_b = SS[p].otherFormes) === null || _b === void 0 ? void 0 : _b.splice(i, 1);
+    delete SS[p + "-Gmax"];
+});
+var i = (_b = SS['Toxtricity'].otherFormes) === null || _b === void 0 ? void 0 : _b.indexOf('Toxtricity-Low-Key-Gmax');
+if (i != undefined)
+    (_c = SS['Toxtricity'].otherFormes) === null || _c === void 0 ? void 0 : _c.splice(i, 1);
+delete SS['Toxtricity-Low-Key-Gmax'];
+var i = (_d = SS['Urshifu'].otherFormes) === null || _d === void 0 ? void 0 : _d.indexOf('Urshifu-Rapid-Strike-Gmax');
+if (i != undefined)
+    (_e = SS['Urshifu'].otherFormes) === null || _e === void 0 ? void 0 : _e.splice(i, 1);
+delete SS['Urshifu-Rapid-Strike-Gmax'];
 exports.SPECIES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS];
 var Species = (function () {
     function Species(gen) {
