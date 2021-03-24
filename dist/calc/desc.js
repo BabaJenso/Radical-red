@@ -160,7 +160,7 @@ function getRecoil(gen, attacker, defender, move, damage, notation) {
         if (gen.num === 4)
             text += ' (rounded down)';
     }
-    else if (move.mindBlownRecoil) {
+    else if (move.mindBlownRecoil && !attacker.hasAbility('Magic Guard', 'Bad Company')) {
         recoil = notation === '%' ? 24 : 50;
         text = '50% recoil damage';
     }
