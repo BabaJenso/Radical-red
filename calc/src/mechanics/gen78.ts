@@ -1041,7 +1041,7 @@ export function calculateAtModsSMSS(
     (attacker.hasAbility('Solar Power') &&
      field.hasWeather('Sun', 'Harsh Sunshine') &&
      move.category === 'Special') ||
-    (attacker.named('Cherrim') &&
+    (attacker.named('Cherrim', 'Cherrim-Sunshine') &&
      attacker.hasAbility('Flower Gift') &&
      field.hasWeather('Sun', 'Harsh Sunshine') &&
      move.category === 'Physical') ||

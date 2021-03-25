@@ -807,7 +807,7 @@ function calculateAtModsSMSS(gen, attacker, defender, move, field, desc) {
     else if ((attacker.hasAbility('Solar Power') &&
         field.hasWeather('Sun', 'Harsh Sunshine') &&
         move.category === 'Special') ||
-        (attacker.named('Cherrim') &&
+        (attacker.named('Cherrim', 'Cherrim-Sunshine') &&
             attacker.hasAbility('Flower Gift') &&
             field.hasWeather('Sun', 'Harsh Sunshine') &&
             move.category === 'Physical') ||

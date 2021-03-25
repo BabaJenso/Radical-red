@@ -8691,6 +8691,7 @@ var RR_PATCH = {
     'Centiskorch': { otherFormes: ['Centiskorch-Mega', 'Centiskorch-Gmax'] },
     'Chatot': { bs: { sp: 101 } },
     'Cherrim': { bs: { at: 100, sa: 60 } },
+    'Cherrim-Sunshine': { bs: { at: 100, sa: 60 } },
     'Chimecho': { bs: { hp: 90, sp: 80 } },
     'Cinderace': { bs: { at: 111 } },
     'Clawitzer': { bs: { sp: 72 } },
