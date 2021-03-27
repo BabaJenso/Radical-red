@@ -74,9 +74,6 @@ function calculateSMSS(gen, attacker, defender, move, field) {
     else if (move.named('Techno Blast') && attacker.item && attacker.item.includes('Drive')) {
         move.type = items_1.getTechnoBlast(attacker.item);
     }
-    else if (move.named('Multi-Attack') && attacker.item && attacker.item.includes('Memory')) {
-        move.type = items_1.getMultiAttack(attacker.item);
-    }
     else if (move.named('Natural Gift') && attacker.item && attacker.item.includes('Berry')) {
         var gift = items_1.getNaturalGift(gen, attacker.item);
         move.type = gift.t;
@@ -93,7 +90,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
                         : field.hasTerrain('Psychic') ? 'Psychic'
                             : 'Normal';
     }
-    else if (move.named('Revelation Dance')) {
+    else if (move.named('Revelation Dance', 'Multi-Attack')) {
         move.type = attacker.types[0];
     }
     else if (move.named('Aura Wheel')) {

@@ -145,8 +145,6 @@ export function calculateSMSS(
     move.type = getItemBoostType(attacker.item)!;
   } else if (move.named('Techno Blast') && attacker.item && attacker.item.includes('Drive')) {
     move.type = getTechnoBlast(attacker.item)!;
-  } else if (move.named('Multi-Attack') && attacker.item && attacker.item.includes('Memory')) {
-    move.type = getMultiAttack(attacker.item)!;
   } else if (move.named('Natural Gift') && attacker.item && attacker.item.includes('Berry')) {
     const gift = getNaturalGift(gen, attacker.item)!;
     move.type = gift.t;
@@ -161,7 +159,7 @@ export function calculateSMSS(
       : field.hasTerrain('Misty') ? 'Fairy'
       : field.hasTerrain('Psychic') ? 'Psychic'
       : 'Normal';
-  } else if (move.named('Revelation Dance')) {
+  } else if (move.named('Revelation Dance', 'Multi-Attack')) {
     move.type = attacker.types[0];
   } else if (move.named('Aura Wheel')) {
     if (attacker.named('Morpeko')) {

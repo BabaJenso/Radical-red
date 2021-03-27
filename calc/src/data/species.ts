@@ -8719,6 +8719,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Delcatty': {bs: {sa: 65}},
   'Delibird': {bs: {at: 100, sp: 105}},
   'Dewgong': {bs: {at: 50, sa: 90}},
+  'Dialga': {otherFormes: ['Dialga-Primal']},
   'Dracovish': {bs: {at: 80, sd: 90}},
   'Drampa': {bs: {hp: 103, at: 50}},
   'Drapion': {bs: {at: 80}},
@@ -8953,6 +8954,14 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
     weightkg: 650,
     abilities: {0: 'Sheer Force'},
     baseSpecies: 'Copperajah'
+  },
+  'Dialga-Primal': {
+    types: ['Steel', 'Dragon'],
+    bs: {hp: 100, at: 120, df: 150, sa: 185, sd: 130, sp: 90},
+    weightkg: 683,
+    abilities: {0: 'Primal Armor'},
+    baseSpecies: 'Dialga',
+    gender: 'N',
   },
   'Drednaw-Mega': {
     types: ['Water', 'Fighting'],
