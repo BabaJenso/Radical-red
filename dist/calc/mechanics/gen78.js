@@ -686,12 +686,9 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         bpMods.push(0x1199);
         desc.attackerItem = attacker.item;
     }
-    else if ((attacker.hasItem('Adamant Orb') &&
-        attacker.named('Dialga') &&
-        move.hasType('Steel', 'Dragon')) ||
-        (attacker.hasItem('Lustrous Orb') &&
-            attacker.named('Palkia') &&
-            move.hasType('Water', 'Dragon')) ||
+    else if ((attacker.hasItem('Lustrous Orb') &&
+        attacker.named('Palkia') &&
+        move.hasType('Water', 'Dragon')) ||
         (attacker.hasItem('Griseous Orb') &&
             attacker.named('Giratina-Origin') &&
             move.hasType('Ghost', 'Dragon')) ||
