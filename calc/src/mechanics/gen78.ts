@@ -807,7 +807,7 @@ export function calculateBPModsSMSS(
   }
 
   if (!move.isZ && !move.isMax &&
-      (isAerilate || isPixilate || isRefrigerate || isGalvanize || isNormalize)) {
+      (isAerilate || isPixilate || attacker.hasAbility('Refrigerate') || isGalvanize || isNormalize)) {
     bpMods.push(0x1333);
     desc.attackerAbility = attacker.ability;
   } else if ((attacker.hasAbility('Reckless') && (move.recoil || move.hasCrashDamage)) ||

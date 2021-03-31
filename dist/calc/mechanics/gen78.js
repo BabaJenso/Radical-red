@@ -600,7 +600,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         desc.attackerAbility = attacker.ability;
     }
     if (!move.isZ && !move.isMax &&
-        (isAerilate || isPixilate || isRefrigerate || isGalvanize || isNormalize)) {
+        (isAerilate || isPixilate || attacker.hasAbility('Refrigerate') || isGalvanize || isNormalize)) {
         bpMods.push(0x1333);
         desc.attackerAbility = attacker.ability;
     }
