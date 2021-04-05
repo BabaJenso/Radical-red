@@ -8688,6 +8688,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Bellossom': {types: ['Grass', 'Fairy'], bs: {hp: 85, at: 70}},
   'Bibarel': {bs: {df: 80, sd: 80, sp: 50}},
   'Blastoise-Mega': {bs: {sa: 125}},
+  'Blaziken': {bs: {at: 110, sa: 120}},
   'Blaziken-Mega': {bs: {at: 130, sa: 160}},
   'Boltund': {bs: {at: 100, sa: 80}},
   'Bouffalant': {bs: {sp: 65}},
