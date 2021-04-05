@@ -32,7 +32,6 @@ export function getItemBoostType(item: string | undefined) {
   case 'Silver Powder':
     return 'Bug';
   case 'Iron Plate':
-  case 'Metal Coat':
     return 'Steel';
   case 'Meadow Plate':
   case 'Rose Incense':
