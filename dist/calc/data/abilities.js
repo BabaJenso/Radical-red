@@ -327,7 +327,7 @@ var SS = SM.concat([
 var RR = SS.concat([
     'Blademaster',
     'Striker',
-    'Feline Prowess',
+    'Feline Power',
     'Flaming Soul',
     'Sage Power',
     'Surprise!',
