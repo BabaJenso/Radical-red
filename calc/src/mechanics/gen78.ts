@@ -113,6 +113,7 @@ export function calculateSMSS(
     'Moongeist Beam',
     'Photon Geyser',
     'Searing Sunraze Smash',
+    'Shell Side Arm',
     'Sunsteel Strike'
   );
   if (!defenderIgnoresAbility && !defender.hasAbility('Poison Heal')) {
@@ -364,21 +365,12 @@ export function calculateSMSS(
   if (move.named('Photon Geyser', 'Light That Burns The Sky')) {
     move.category = attackSource.stats.atk > attackSource.stats.spa ? 'Physical' : 'Special';
   }
-  const attackStat =
-    move.named('Shell Side Arm') &&
-    getShellSideArmCategory(attacker, defender) === 'Physical'
-      ? 'atk'
-      : move.named('Body Press')
-        ? 'def'
-        : move.category === 'Special'
-          ? 'spa'
-          : 'atk';
+  const attackStat = move.named('Body Press') ? 'def' : move.category === 'Special' ? 'spa' : 'atk';
   // #endregion
   // #region (Special) Defense
 
   const defense = calculateDefenseSMSS(gen, attacker, defender, move, field, desc, isCritical);
-  const hitsPhysical = move.defensiveCategory === 'Physical' ||
-    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical');
+  const hitsPhysical = move.defensiveCategory === 'Physical';
   const defenseStat = hitsPhysical ? 'def' : 'spd';
 
   // #endregion
@@ -980,15 +972,7 @@ export function calculateAttackSMSS(
   if (move.named('Photon Geyser', 'Light That Burns The Sky')) {
     move.category = attackSource.stats.atk > attackSource.stats.spa ? 'Physical' : 'Special';
   }
-  const attackStat =
-    move.named('Shell Side Arm') &&
-    getShellSideArmCategory(attacker, defender) === 'Physical'
-      ? 'atk'
-      : move.named('Body Press')
-        ? 'def'
-        : move.category === 'Special'
-          ? 'spa'
-          : 'atk';
+  const attackStat = move.named('Body Press') ? 'def' : move.category === 'Special' ? 'spa' : 'atk';
   desc.attackEVs =
     move.named('Foul Play')
       ? getEVDescriptionText(gen, defender, attackStat, defender.nature)
@@ -1129,8 +1113,7 @@ export function calculateDefenseSMSS(
   isCritical = false
 ) {
   let defense: number;
-  const hitsPhysical = move.defensiveCategory === 'Physical' ||
-    (move.named('Shell Side Arm') && getShellSideArmCategory(attacker, defender) === 'Physical');
+  const hitsPhysical = move.defensiveCategory === 'Physical';
   const defenseStat = hitsPhysical ? 'def' : 'spd';
   desc.defenseEVs = getEVDescriptionText(gen, defender, defenseStat, defender.nature);
   if (defender.boosts[defenseStat] === 0 ||
