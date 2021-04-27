@@ -8814,7 +8814,7 @@ var RR_PATCH = {
     'Perrserker': { bs: { hp: 90, sa: 30 } },
     'Persian': { bs: { at: 80, sa: 60 } },
     'Persian-Alola': { bs: { sa: 55 } },
-    'Pikachu': { otherFormes: ['Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre', 'Pikachu-PhD', 'Pikachu-Pop-Star', 'Pikachu-Rock-Star', 'Pikachu-Gmax'] },
+    'Pikachu': { otherFormes: ['Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre', 'Pikachu-PhD', 'Pikachu-Pop-Star', 'Pikachu-Rock-Star', 'Pikachu-Flying', 'Pikachu-Surfing', 'Pikachu-Gmax'] },
     'Pikachu-Belle': { types: ['Electric', 'Ice'] },
     'Pikachu-Rock-Star': { types: ['Electric', 'Steel'] },
     'Pikachu-Pop-Star': { types: ['Electric', 'Fairy'] },
@@ -8845,7 +8845,7 @@ var RR_PATCH = {
     'Sawsbuck': { bs: { at: 110, sp: 105 } },
     'Sceptile': { types: ['Grass', 'Dragon'], bs: { at: 105, sa: 85 } },
     'Sceptile-Mega': { bs: { at: 135, sa: 110 }, abilities: { 0: 'Technician' } },
-    'Seviper': { bs: { hp: 83, df: 83, sd: 83, sp: 100 } },
+    'Seviper': { bs: { hp: 83, df: 83, sd: 83, sp: 85 } },
     'Shiinotic': { bs: { hp: 75 } },
     'Silvally': { bs: { hp: 100, at: 100, df: 100, sa: 100, sd: 100, sp: 100 }, abilities: { 0: 'Battle Armor' } },
     'Silvally-Bug': { bs: { hp: 100, at: 100, df: 100, sa: 100, sd: 100, sp: 100 }, abilities: { 0: 'Battle Armor' } },
@@ -9013,6 +9013,20 @@ var RR_PATCH = {
         weightkg: 40.8,
         abilities: { 0: 'Magic Guard' },
         baseSpecies: 'Orbeetle'
+    },
+    'Pikachu-Flying': {
+        types: ['Electric', 'Flying'],
+        bs: { hp: 35, at: 55, df: 40, sa: 50, sd: 50, sp: 90 },
+        weightkg: 6,
+        abilities: { 0: 'Static' },
+        baseSpecies: 'Pikachu'
+    },
+    'Pikachu-Surfing': {
+        types: ['Electric', 'Water'],
+        bs: { hp: 35, at: 55, df: 40, sa: 50, sd: 50, sp: 90 },
+        weightkg: 6,
+        abilities: { 0: 'Static' },
+        baseSpecies: 'Pikachu'
     },
     'Sandaconda-Mega': {
         types: ['Ground', 'Flying'],

@@ -4156,6 +4156,7 @@ var RR_PATCH = {
     'Shadow Bone': { isBone: true },
     'Shadow Claw': { bp: 80, isSword: true },
     'Shadow Punch': { bp: 80 },
+    'Shell Side Arm': { bp: 100 },
     Slash: { isSword: true },
     'Snipe Shot': { bp: 70, isBullet: true, isPulse: true },
     'Solar Blade': { isSword: true },
