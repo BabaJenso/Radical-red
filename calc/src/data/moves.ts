@@ -1,4 +1,3 @@
-import { triggerAsyncId } from 'node:async_hooks';
 import * as I from '../data/interface';
 import {toID, DeepPartial, assignWithout, extend} from '../util';
 
