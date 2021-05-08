@@ -45,7 +45,7 @@ var EV_ITEMS = [
     'Power Weight',
 ];
 function isGrounded(pokemon, field) {
-    return (field.isGravity ||
+    return (field.isGravity || pokemon.hasItem('Iron Ball') ||
         (!pokemon.hasType('Flying') &&
             !pokemon.hasAbility('Levitate') &&
             !pokemon.hasItem('Air Balloon')));
@@ -116,7 +116,10 @@ function getFinalSpeed(gen, pokemon, field, side) {
     var terrain = field.terrain;
     var speed = getModifiedStat(pokemon.rawStats.spe, pokemon.boosts.spe, gen);
     var mods = 1;
-    if (pokemon.hasItem('Choice Scarf')) {
+    if (pokemon.hasItem('Choice Scarf') ||
+        (pokemon.named('Cherrim') &&
+            pokemon.hasAbility('Flower Gift') &&
+            field.hasWeather('Sun', 'Harsh Sunshine'))) {
         mods *= 1.5;
     }
     else if (pokemon.hasItem.apply(pokemon, __spreadArray(['Iron Ball'], __read(EV_ITEMS)))) {
@@ -212,6 +215,9 @@ function checkIntimidate(gen, source, target) {
         }
         else {
             target.boosts.atk = Math.max(-6, target.boosts.atk - 1);
+        }
+        if (target.hasAbility('Competitive')) {
+            target.boosts.spa = Math.min(6, target.boosts.spa + 2);
         }
     }
 }
@@ -343,12 +349,12 @@ function checkMultihitBoost(gen, attacker, defender, move, field, desc, usedWhit
 exports.checkMultihitBoost = checkMultihitBoost;
 function chainMods(mods) {
     var e_3, _a;
-    var M = 0x1000;
+    var M = 4096;
     try {
         for (var mods_1 = __values(mods), mods_1_1 = mods_1.next(); !mods_1_1.done; mods_1_1 = mods_1.next()) {
             var mod = mods_1_1.value;
-            if (mod !== 0x1000) {
-                M = (M * mod + 0x800) >> 12;
+            if (mod !== 4096) {
+                M = (M * mod + 2048) >> 12;
             }
         }
     }
@@ -368,14 +374,14 @@ function getBaseDamage(level, basePower, attack, defense) {
 exports.getBaseDamage = getBaseDamage;
 function getFinalDamage(baseAmount, i, effectiveness, isBurned, stabMod, finalMod, protect) {
     var damageAmount = Math.floor(OF32(baseAmount * (85 + i)) / 100);
-    if (stabMod !== 0x1000)
-        damageAmount = OF32(damageAmount * stabMod) / 0x1000;
+    if (stabMod !== 4096)
+        damageAmount = OF32(damageAmount * stabMod) / 4096;
     damageAmount = Math.floor(OF32(pokeRound(damageAmount) * effectiveness));
     if (isBurned)
         damageAmount = Math.floor(damageAmount / 2);
     if (protect)
-        damageAmount = pokeRound(OF32(damageAmount * 0x400) / 0x1000);
-    return OF16(pokeRound(Math.max(1, OF32(damageAmount * finalMod) / 0x1000)));
+        damageAmount = pokeRound(OF32(damageAmount * 1024) / 4096);
+    return OF16(pokeRound(Math.max(1, OF32(damageAmount * finalMod) / 4096)));
 }
 exports.getFinalDamage = getFinalDamage;
 function getShellSideArmCategory(source, target) {
@@ -441,11 +447,11 @@ function pokeRound(num) {
 }
 exports.pokeRound = pokeRound;
 function OF16(n) {
-    return n > 0xFFFF ? n % 0x10000 : n;
+    return n > 65535 ? n % 65536 : n;
 }
 exports.OF16 = OF16;
 function OF32(n) {
-    return n > 0xFFFFFFFF ? n % 0x100000000 : n;
+    return n > 4294967295 ? n % 4294967296 : n;
 }
 exports.OF32 = OF32;
 //# sourceMappingURL=util.js.map

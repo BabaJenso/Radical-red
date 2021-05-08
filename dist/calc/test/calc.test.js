@@ -245,6 +245,29 @@ describe('calc', function () {
                 expect(result.desc()).toBe('0 Atk Zygarde Thousand Arrows vs. 0 HP / 0 Def Swellow: 147-174 (56.3 - 66.6%) -- guaranteed 2HKO');
             });
         });
+        helper_1.inGens(4, 8, function (_a) {
+            var gen = _a.gen, calculate = _a.calculate, Pokemon = _a.Pokemon, Move = _a.Move;
+            var zapdos = Pokemon('Zapdos', { item: 'Iron Ball' });
+            if (gen === 4) {
+                test("Iron Ball negates ground immunities (gen " + gen + ")", function () {
+                    var result = calculate(Pokemon('Vibrava'), zapdos, Move('Earthquake'));
+                    expect(result.range()).toEqual([186, 218]);
+                    expect(result.desc()).toBe('0 Atk Vibrava Earthquake vs. 0 HP / 0 Def Zapdos: 186-218 (57.9 - 67.9%) -- guaranteed 2HKO');
+                });
+            }
+            else {
+                test("Iron Ball Should negate damage nullifiers (gen " + gen + ")", function () {
+                    var result = calculate(Pokemon('Vibrava'), zapdos, Move('Earthquake'));
+                    expect(result.range()).toEqual([93, 109]);
+                    expect(result.desc()).toBe('0 Atk Vibrava Earthquake vs. 0 HP / 0 Def Zapdos: 93-109 (28.9 - 33.9%) -- 1.2% chance to 3HKO');
+                });
+            }
+            test("Iron Ball negates levitate (gen " + gen + ")", function () {
+                var result = calculate(Pokemon('Poliwrath'), Pokemon('Mismagius', { item: 'Iron Ball' }), Move('Mud Shot'));
+                expect(result.range()).toEqual([29, 35]);
+                expect(result.desc()).toBe('0 SpA Poliwrath Mud Shot vs. 0 HP / 0 SpD Mismagius: 29-35 (11.1 - 13.4%) -- possible 8HKO');
+            });
+        });
         helper_1.inGen(8, function (_a) {
             var gen = _a.gen, Pokemon = _a.Pokemon;
             test("Pokemon should double their HP stat when dynamaxing (gen " + gen + ")", function () {
@@ -668,6 +691,13 @@ describe('calc', function () {
                 var knockoff = Move('Knock Off');
                 var result = calculate(sawk, silvally, knockoff);
                 expect(result.desc()).toBe('252 Atk Mold Breaker Sawk Knock Off vs. 0 HP / 0 Def Silvally-Dark: 36-43 (10.8 - 12.9%) -- possible 8HKO');
+            });
+            test('-ate Abilities', function () {
+                var sylveon = Pokemon('Sylveon', { ability: 'Pixilate', evs: { spa: 252 } });
+                var silvally = Pokemon('Silvally');
+                var hypervoice = Move('Hyper Voice');
+                var result = calculate(sylveon, silvally, hypervoice);
+                expect(result.desc()).toBe('252 SpA Pixilate Sylveon Hyper Voice vs. 0 HP / 0 SpD Silvally: 165-195 (49.8 - 58.9%) -- 99.6% chance to 2HKO');
             });
             test('% chance to OHKO', function () {
                 var abomasnow = Pokemon('Abomasnow', {

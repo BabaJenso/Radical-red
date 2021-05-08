@@ -95,7 +95,7 @@ var Abilities = (function () {
         this.dex = dex;
     }
     Abilities.prototype.get = function (name) {
-        var ability = this.dex.getAbility(name);
+        var ability = this.dex.abilities.get(name);
         if (ability.isNonstandard === 'CAP' && this.dex.gen < 4)
             return undefined;
         return exists(ability, this.dex.gen) ? new Ability(ability) : undefined;
@@ -143,9 +143,9 @@ var Items = (function () {
     Items.prototype.get = function (name) {
         if (this.dex.gen < 2)
             return undefined;
-        var item = this.dex.getItem(name);
+        var item = this.dex.items.get(name);
         if (this.dex.gen === 3 && item.id === 'enigmaberry') {
-            item = this.dex.forGen(4).getItem('enigmaberry');
+            item = this.dex.forGen(4).items.get('enigmaberry');
         }
         return exists(item, this.dex.gen) ? new Item(item, this.dex.gen) : undefined;
     };
@@ -196,7 +196,7 @@ var Moves = (function () {
         this.dex = dex;
     }
     Moves.prototype.get = function (name) {
-        var move = this.dex.getMove(name);
+        var move = this.dex.moves.get(name);
         return exists(move, this.dex.gen) ? new Move(move, this.dex) : undefined;
     };
     Moves.prototype[Symbol.iterator] = function () {
@@ -316,7 +316,7 @@ var Species = (function () {
         this.dex = dex;
     }
     Species.prototype.get = function (name) {
-        var species = this.dex.getSpecies(name);
+        var species = this.dex.species.get(name);
         if (this.dex.gen >= 6 && species.id === 'aegislashboth')
             return AegislashBoth(this.dex);
         return exists(species, this.dex.gen) ? new Specie(species, this.dex) : undefined;
@@ -376,12 +376,12 @@ var Specie = (function () {
         this.types = species.types;
         this.baseStats = species.baseStats;
         this.weightkg = species.weightkg;
-        var nfe = !!((_a = species.evos) === null || _a === void 0 ? void 0 : _a.some(function (s) { return exists(dex.getSpecies(s), dex.gen); }));
+        var nfe = !!((_a = species.evos) === null || _a === void 0 ? void 0 : _a.some(function (s) { return exists(dex.species.get(s), dex.gen); }));
         if (nfe)
             this.nfe = nfe;
         if (species.gender === 'N' && dex.gen > 1)
             this.gender = species.gender;
-        var formes = (_b = species.otherFormes) === null || _b === void 0 ? void 0 : _b.filter(function (s) { return exists(dex.getSpecies(s), dex.gen); });
+        var formes = (_b = species.otherFormes) === null || _b === void 0 ? void 0 : _b.filter(function (s) { return exists(dex.species.get(s), dex.gen); });
         if (species.id.startsWith('aegislash')) {
             if (species.id === 'aegislashblade') {
                 this.otherFormes = ['Aegislash-Shield', 'Aegislash-Both'];
@@ -415,7 +415,7 @@ var Specie = (function () {
         if (dex.gen === 8 && species.canGigantamax &&
             !(species.id.startsWith('toxtricity') || species.id.startsWith('urshifu'))) {
             var formes_1 = this.otherFormes || [];
-            var gmax = dex.getSpecies(species.name + "-Gmax");
+            var gmax = dex.species.get(species.name + "-Gmax");
             if (exists(gmax, dex.gen))
                 this.otherFormes = __spreadArray(__spreadArray([], __read(formes_1)), [gmax.name]).sort();
         }
@@ -425,8 +425,8 @@ var Specie = (function () {
     return Specie;
 }());
 function AegislashBoth(dex) {
-    var shield = dex.getSpecies('aegislash');
-    var blade = dex.getSpecies('aegislashblade');
+    var shield = dex.species.get('aegislash');
+    var blade = dex.species.get('aegislashblade');
     var baseStats = {
         hp: shield.baseStats.hp,
         atk: blade.baseStats.atk,
@@ -448,13 +448,16 @@ var Types = (function () {
             effectiveness: {}
         };
         this.byID = {};
-        for (var t1 in this.dex.data.Types) {
-            var id = toID(t1);
-            var name_1 = t1;
+        for (var id in this.dex.data.Types) {
+            if (!exists(this.dex.types.get(id), this.dex.gen))
+                continue;
+            var name_1 = id[0].toUpperCase() + id.slice(1);
             var effectiveness = { '???': 1 };
-            for (var t2 in this.dex.data.Types) {
-                var t = t2;
-                effectiveness[t] = DAMAGE_TAKEN[this.dex.data.Types[t].damageTaken[name_1]];
+            for (var t2ID in this.dex.data.Types) {
+                if (!exists(this.dex.types.get(t2ID), this.dex.gen))
+                    continue;
+                var t = t2ID[0].toUpperCase() + t2ID.slice(1);
+                effectiveness[t] = DAMAGE_TAKEN[this.dex.data.Types[t2ID].damageTaken[name_1]];
             }
             unknown.effectiveness[name_1] = 1;
             this.byID[id] = { kind: 'Type', id: id, name: name_1, effectiveness: effectiveness };
@@ -496,7 +499,7 @@ var Natures = (function () {
         this.dex = dex;
     }
     Natures.prototype.get = function (name) {
-        var nature = this.dex.getNature(name);
+        var nature = this.dex.natures.get(name);
         return nature.exists ? new Nature(nature) : undefined;
     };
     Natures.prototype[Symbol.iterator] = function () {

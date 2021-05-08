@@ -3135,7 +3135,6 @@ var SS_PATCH = {
         bp: 10,
         type: 'Dark',
         category: 'Physical',
-        breaksProtect: true,
         isMax: true,
         maxPower: 1
     },
@@ -3143,7 +3142,6 @@ var SS_PATCH = {
         bp: 10,
         type: 'Water',
         category: 'Physical',
-        breaksProtect: true,
         isMax: true,
         maxPower: 1
     },
@@ -4166,6 +4164,7 @@ var RR_PATCH = {
     'Triple Axel': { isKick: true },
     'Triple Kick': { bp: 20, isKick: true },
     'Trop Kick': { isKick: true },
+    'Wicked Blow': { isPunch: false },
     'X-Scissor': { isSword: true },
     'Aqua Fang': {
         bp: 80,

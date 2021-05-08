@@ -85,6 +85,7 @@ var Side = (function () {
         this.isFriendGuard = !!side.isFriendGuard;
         this.isAuroraVeil = !!side.isAuroraVeil;
         this.isBattery = !!side.isBattery;
+        this.isPowerSpot = !!side.isPowerSpot;
         this.isSwitching = side.isSwitching;
     }
     Side.prototype.clone = function () {

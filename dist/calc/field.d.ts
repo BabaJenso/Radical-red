@@ -34,6 +34,7 @@ export declare class Side implements State.Side {
     isFriendGuard: boolean;
     isAuroraVeil: boolean;
     isBattery: boolean;
+    isPowerSpot: boolean;
     isSwitching?: 'out' | 'in';
     constructor(side?: State.Side);
     clone(): Side;

@@ -4178,6 +4178,7 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Triple Axel': {isKick: true},
   'Triple Kick': {bp:20, isKick: true},
   'Trop Kick': {isKick: true},
+  'Wicked Blow': {isPunch: false},
   'X-Scissor': {isSword: true},
   'Aqua Fang': {
     bp: 80,

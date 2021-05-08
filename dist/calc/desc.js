@@ -187,7 +187,7 @@ function getKOChance(gen, attacker, defender, move, field, damage, err) {
     }
     var hazards = getHazards(gen, defender, field.defenderSide);
     var eot = getEndOfTurn(gen, attacker, defender, move, field);
-    var toxicCounter = defender.hasStatus('tox') && !defender.hasAbility('Magic Guard') ? defender.toxicCounter : 0;
+    var toxicCounter = defender.hasStatus('tox') && !defender.hasAbility('Magic Guard', 'Toxic Boost') ? defender.toxicCounter : 0;
     var qualifier = '';
     if (move.hits > 1) {
         qualifier = 'approx. ';
@@ -677,6 +677,9 @@ function buildDescription(description, attacker, defender) {
     }
     if (description.isBattery) {
         output += ' Battery boosted ';
+    }
+    if (description.isPowerSpot) {
+        output += ' Power Spot boosted ';
     }
     if (description.isSwitching) {
         output += ' switching boosted ';

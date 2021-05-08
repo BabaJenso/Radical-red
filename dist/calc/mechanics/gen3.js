@@ -85,7 +85,7 @@ function calculateADV(gen, attacker, defender, move, field) {
     if (move.hits > 1) {
         desc.hits = move.hits;
     }
-    var bp;
+    var bp = move.bp;
     switch (move.name) {
         case 'Flail':
         case 'Reversal':
@@ -102,6 +102,12 @@ function calculateADV(gen, attacker, defender, move, field) {
             var w = defender.weightkg;
             bp = w >= 200 ? 120 : w >= 100 ? 100 : w >= 50 ? 80 : w >= 25 ? 60 : w >= 10 ? 40 : 20;
             desc.moveBP = bp;
+            break;
+        case 'Facade':
+            if (attacker.hasStatus('par', 'psn', 'tox', 'brn')) {
+                bp = move.bp * 2;
+                desc.moveBP = bp;
+            }
             break;
         default:
             bp = move.bp;

@@ -102,6 +102,15 @@ function calculateDPP(gen, attacker, defender, move, field) {
         ? util_1.getMoveEffectiveness(gen, move, defender.types[1], isGhostRevealed, field.isGravity)
         : 1;
     var typeEffectiveness = type1Effectiveness * type2Effectiveness;
+    if (typeEffectiveness === 0 && move.hasType('Ground') && defender.hasItem('Iron Ball')) {
+        if (type1Effectiveness === 0) {
+            type1Effectiveness = 1;
+        }
+        else if (defender.types[1] && type2Effectiveness === 0) {
+            type2Effectiveness = 1;
+        }
+        typeEffectiveness = type1Effectiveness * type2Effectiveness;
+    }
     if (typeEffectiveness === 0) {
         return result;
     }
@@ -110,7 +119,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
         (move.hasType('Fire') && defender.hasAbility('Flash Fire')) ||
         (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Water Absorb')) ||
         (move.hasType('Electric') && defender.hasAbility('Motor Drive', 'Volt Absorb')) ||
-        (move.hasType('Ground') && !field.isGravity && defender.hasAbility('Levitate')) ||
+        (move.hasType('Ground') && !field.isGravity &&
+            !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
         (move.flags.sound && defender.hasAbility('Soundproof'))) {
         desc.defenderAbility = defender.ability;
         return result;
@@ -145,8 +155,8 @@ function calculateDPP(gen, attacker, defender, move, field) {
             break;
         case 'Flail':
         case 'Reversal':
-            var p = Math.floor((48 * attacker.curHP()) / attacker.maxHP());
-            basePower = p <= 1 ? 200 : p <= 4 ? 150 : p <= 9 ? 100 : p <= 16 ? 80 : p <= 32 ? 40 : 20;
+            var p = Math.floor((64 * attacker.curHP()) / attacker.maxHP());
+            basePower = p <= 1 ? 200 : p <= 5 ? 150 : p <= 12 ? 100 : p <= 21 ? 80 : p <= 42 ? 40 : 20;
             desc.moveBP = basePower;
             break;
         case 'Fling':

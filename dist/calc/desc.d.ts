@@ -25,6 +25,7 @@ export interface RawDesc {
     isProtected?: boolean;
     isReflect?: boolean;
     isBattery?: boolean;
+    isPowerSpot?: boolean;
     isSwitching?: 'out' | 'in';
     moveBP?: number;
     moveName: string;
