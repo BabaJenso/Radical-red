@@ -116,10 +116,7 @@ function getFinalSpeed(gen, pokemon, field, side) {
     var terrain = field.terrain;
     var speed = getModifiedStat(pokemon.rawStats.spe, pokemon.boosts.spe, gen);
     var mods = 1;
-    if (pokemon.hasItem('Choice Scarf') ||
-        (pokemon.named('Cherrim') &&
-            pokemon.hasAbility('Flower Gift') &&
-            field.hasWeather('Sun', 'Harsh Sunshine'))) {
+    if (pokemon.hasItem('Choice Scarf')) {
         mods *= 1.5;
     }
     else if (pokemon.hasItem.apply(pokemon, __spreadArray(['Iron Ball'], __read(EV_ITEMS)))) {
@@ -136,7 +133,10 @@ function getFinalSpeed(gen, pokemon, field, side) {
         (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric')) {
         speed *= 2;
     }
-    else if (pokemon.hasAbility('Quick Feet') && pokemon.status) {
+    else if (pokemon.hasAbility('Quick Feet') && pokemon.status ||
+        (pokemon.named('Cherrim') &&
+            pokemon.hasAbility('Flower Gift') &&
+            field.hasWeather('Sun', 'Harsh Sunshine'))) {
         mods *= 1.5;
     }
     else if (pokemon.hasAbility('Slow Start') && pokemon.abilityOn) {
