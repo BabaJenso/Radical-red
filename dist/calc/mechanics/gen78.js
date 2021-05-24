@@ -821,6 +821,8 @@ function calculateAtModsSMSS(gen, attacker, defender, move, field, desc) {
             field.hasWeather('Sun', 'Harsh Sunshine') &&
             move.category === 'Physical') ||
         (attacker.hasAbility('Gorilla Tactics') && move.category === 'Physical' &&
+            !attacker.isDynamaxed) ||
+        (attacker.hasAbility('Sage Power') && move.category === 'Special' &&
             !attacker.isDynamaxed)) {
         atMods.push(6144);
         desc.attackerAbility = attacker.ability;

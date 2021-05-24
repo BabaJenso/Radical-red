@@ -1068,6 +1068,8 @@ export function calculateAtModsSMSS(
      move.category === 'Physical') ||
     // Gorilla Tactics has no effect during Dynamax (Anubis)
     (attacker.hasAbility('Gorilla Tactics') && move.category === 'Physical' &&
+     !attacker.isDynamaxed) ||
+    (attacker.hasAbility('Sage Power') && move.category === 'Special' &&
      !attacker.isDynamaxed)) {
     atMods.push(6144);
     desc.attackerAbility = attacker.ability;
