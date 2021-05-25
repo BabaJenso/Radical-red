@@ -4150,6 +4150,7 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Low Kick': {isKick: true},
   'Mega Drain': {bp: 60},
   'Mega Kick': {isKick: true},
+  'Mud-Slap': {bp: 40},
   'Needle Arm': {bp: 95},
   'Night Slash': {isSword: true},
   Octazooka: {bp: 80, isPulse: true},
