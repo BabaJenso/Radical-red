@@ -4191,7 +4191,7 @@ var RR_PATCH = {
     'Soul Robbery': {
         bp: 105,
         type: 'Psychic',
-        category: 'Special',
+        category: 'Physical',
         zp: 180,
         maxPower: 140
     }
