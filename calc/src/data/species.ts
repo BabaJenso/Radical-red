@@ -8764,7 +8764,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Glaceon': {bs: {hp: 80, at: 45, df: 100, sp: 75}},
   'Glalie-Mega': {bs: {at: 130, sa: 105}},
   'Gogoat': {bs: {df: 72, sa: 67, sd: 87, sp: 74}},
-  'Golduck': {types: ['Water', 'Psychic'], abilities: {0: 'Swift Swim'}},
+  'Golduck': {types: ['Water', 'Psychic'], bs: {sa: 100, sp: 100}},
   'Gorebyss': {types: ['Water', 'Fairy'], bs: {sa: 104}},
   'Gourgeist': {bs: {at: 58, sa: 90}},
   'Gourgeist-Small': {bs: {at: 58, sa: 85}},
