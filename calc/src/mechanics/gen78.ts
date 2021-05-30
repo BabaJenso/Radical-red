@@ -866,10 +866,12 @@ export function calculateBPModsSMSS(
   } else if (analyticBoost) {
     bpMods.push(5325);
     desc.attackerAbility = attacker.ability;
-  } else if ((attacker.hasAbility('Tough Claws') && move.flags.contact) ||
-            (attacker.hasAbility('Iron Fist') && move.flags.punch) ||
-            (attacker.hasAbility('Striker') && move.flags.kick) ||
-            attacker.hasAbility('Illusion')) {
+  } else if (
+    (attacker.hasAbility('Tough Claws') && move.flags.contact) ||
+    (attacker.hasAbility('Iron Fist') && move.flags.punch) ||
+    (attacker.hasAbility('Striker') && move.flags.kick) ||
+    (attacker.hasAbility('Illusion') && attacker.abilityOn)
+  ) {
     bpMods.push(5325);
     desc.attackerAbility = attacker.ability;
   }
@@ -904,7 +906,7 @@ export function calculateBPModsSMSS(
        attacker.hasStatus('psn', 'tox') && move.category === 'Physical') ||
       (attacker.hasAbility('Mega Launcher') && move.flags.pulse) ||
       (attacker.hasAbility('Strong Jaw') && move.flags.bite) ||
-      attacker.hasAbility('Bull Rush')
+      (attacker.hasAbility('Bull Rush') && attacker.abilityOn)
   ) {
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
