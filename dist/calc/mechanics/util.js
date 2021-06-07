@@ -130,10 +130,11 @@ function getFinalSpeed(gen, pokemon, field, side) {
         (pokemon.hasAbility('Sand Rush') && weather === 'Sand') ||
         (pokemon.hasAbility('Swift Swim') && weather.includes('Rain')) ||
         (pokemon.hasAbility('Slush Rush') && weather === 'Hail') ||
-        (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric')) {
+        (pokemon.hasAbility('Surge Surfer') && terrain === 'Electric') ||
+        (pokemon.hasAbility('Quick Feet') && pokemon.status)) {
         speed *= 2;
     }
-    else if (pokemon.hasAbility('Quick Feet') && pokemon.status ||
+    else if (pokemon.hasAbility('Bull Rush') && pokemon.abilityOn ||
         (pokemon.named('Cherrim') &&
             pokemon.hasAbility('Flower Gift') &&
             field.hasWeather('Sun', 'Harsh Sunshine'))) {

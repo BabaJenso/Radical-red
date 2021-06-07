@@ -559,6 +559,11 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             basePower = Math.floor(Math.floor((120 * basePower + 2048 - 1) / 4096) / 100) || 1;
             desc.moveBP = basePower;
             break;
+        case 'Sonic Slash':
+            var ssr = Math.floor(attacker.stats.spe / defender.stats.spe);
+            basePower = ssr >= 3 ? 140 : ssr >= 2 ? 120 : 80;
+            desc.moveBP = basePower;
+            break;
         default:
             basePower = move.bp;
     }
@@ -680,8 +685,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         (attacker.hasAbility('Toxic Boost') &&
             attacker.hasStatus('psn', 'tox') && move.category === 'Physical') ||
         (attacker.hasAbility('Mega Launcher') && move.flags.pulse) ||
-        (attacker.hasAbility('Strong Jaw') && move.flags.bite) ||
-        (attacker.hasAbility('Bull Rush') && attacker.abilityOn)) {
+        (attacker.hasAbility('Strong Jaw') && move.flags.bite)) {
         bpMods.push(6144);
         desc.attackerAbility = attacker.ability;
     }
@@ -864,6 +868,9 @@ function calculateAtModsSMSS(gen, attacker, defender, move, field, desc) {
         atMods.push(2048);
         desc.defenderAbility = defender.ability;
     }
+    if (attacker.hasAbility('Bull Rush') && attacker.abilityOn) {
+        atMods.push(5325);
+    }
     if (move.named('Pursuit') && field.defenderSide.isSwitching === 'out') {
         if (attacker.hasAbility('Technician')) {
             atMods.push(4096);
@@ -931,12 +938,6 @@ function calculateDfModsSMSS(gen, attacker, defender, move, field, desc, isCriti
     if (defender.hasAbility('Marvel Scale') && defender.status && hitsPhysical) {
         dfMods.push(6144);
         desc.defenderAbility = defender.ability;
-    }
-    else if (defender.hasAbility('Solar Power') &&
-        field.hasWeather('Sun', 'Harsh Sunshine')) {
-        dfMods.push(0x1548);
-        desc.defenderAbility = defender.ability;
-        desc.weather = field.weather;
     }
     else if (defender.hasAbility('Grass Pelt') &&
         field.hasTerrain('Grassy') &&

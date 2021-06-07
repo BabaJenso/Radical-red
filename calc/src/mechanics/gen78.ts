@@ -722,6 +722,11 @@ export function calculateBasePowerSMSS(
     basePower = Math.floor(Math.floor((120 * basePower + 2048 - 1) / 4096) / 100) || 1;
     desc.moveBP = basePower;
     break;
+  case 'Sonic Slash':
+    const ssr = Math.floor(attacker.stats.spe / defender.stats.spe);
+    basePower = ssr >= 3 ? 140 : ssr >= 2 ? 120 : 80;
+    desc.moveBP = basePower;
+    break;
   default:
     basePower = move.bp;
   }
@@ -905,8 +910,7 @@ export function calculateBPModsSMSS(
       (attacker.hasAbility('Toxic Boost') &&
        attacker.hasStatus('psn', 'tox') && move.category === 'Physical') ||
       (attacker.hasAbility('Mega Launcher') && move.flags.pulse) ||
-      (attacker.hasAbility('Strong Jaw') && move.flags.bite) ||
-      (attacker.hasAbility('Bull Rush') && attacker.abilityOn)
+      (attacker.hasAbility('Strong Jaw') && move.flags.bite)
   ) {
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
@@ -1116,6 +1120,10 @@ export function calculateAtModsSMSS(
     desc.defenderAbility = defender.ability;
   }
 
+  if (attacker.hasAbility('Bull Rush') && attacker.abilityOn) {
+    atMods.push(5325);
+  }
+
   if (move.named('Pursuit') && field.defenderSide.isSwitching === 'out') {
   // technician negates switching boost, thanks DaWoblefet
     if (attacker.hasAbility('Technician')) {
@@ -1211,13 +1219,6 @@ export function calculateDfModsSMSS(
   if (defender.hasAbility('Marvel Scale') && defender.status && hitsPhysical) {
     dfMods.push(6144);
     desc.defenderAbility = defender.ability;
-  } else if (
-    defender.hasAbility('Solar Power') &&
-    field.hasWeather('Sun', 'Harsh Sunshine')
-  ) {
-    dfMods.push(0x1548);
-    desc.defenderAbility = defender.ability;
-    desc.weather = field.weather;
   } else if (
     defender.hasAbility('Grass Pelt') &&
     field.hasTerrain('Grassy') &&

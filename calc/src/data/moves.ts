@@ -4138,9 +4138,12 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Dragon Hammer': {bp: 100},
   Explosion: {bp: 150},
   'False Swipe': {isSword: true},
+  'Fishous Rend': {isBite: false},
   Flash: {bp: 50, type:'Electric', category: 'Special'},
   'Flash Cannon': {isBullet:true, isPulse: true},
+  'Freezy Frost': {bp: 95},
   'Fury Cutter': {isSword: true},
+  'Head Charge': {secondaries: true},
   'High Horsepower': {isKick: true},
   'High Jump Kick': {isKick: true},
   Inferno: {bp: 120},
@@ -4149,9 +4152,12 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Leaf Blade': {isSword: true},
   'Leaf Tornado': {secondaries: false},
   'Low Kick': {isKick: true},
+  'Low Sweep': {bp: 60, isKick: true},
+  'Luster Purge': {bp: 85},
   'Mega Drain': {bp: 60},
   'Mega Kick': {isKick: true},
   'Mirror Shot': {secondaries: false},
+  'Mist Ball': {bp: 85},
   'Mud Bomb': {secondaries: false},
   'Mud-Slap': {bp: 40, secondaries: false},
   'Needle Arm': {bp: 95},
@@ -4168,6 +4174,7 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Rock Smash': {bp: 60},
   'Rolling Kick': {isKick: true},
   'Sacred Sword': {isSword: true},
+  'Sappy Seed': {bp: 95},
   'Secret Sword': {isSword: true},
   'Self-Destruct': {bp: 100},
   'Shadow Bone': {isBone: true},
@@ -4175,16 +4182,20 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Shadow Punch': {bp: 80},
   'Shell Side Arm': {bp: 100},
   Slash: {isSword: true},
+  'Snap Trap': {bp: 100, type: 'Steel'},
   'Snipe Shot': {bp: 70, isBullet:true, isPulse: true},
   'Solar Blade': {isSword: true},
+  'Sparkly Swirl': {bp: 95},
   'Spike Cannon': {isBullet:true},
   'Stomp': {isKick: true},
   'Sucker Punch': {isPunch: true},
   'Triple Axel': {isKick: true},
   'Triple Kick': {bp:20, isKick: true},
   'Trop Kick': {isKick: true},
+  'Volt Tackle': {recoil: [1, 4]},
   'Wicked Blow': {isPunch: false},
   'X-Scissor': {isSword: true},
+  'Zippy Zap': {priority: 1},
   'Aqua Fang': {
     bp: 80,
     type: 'Water',
@@ -4202,35 +4213,23 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     zp: 180,
     maxPower: 130
   },
-  'Soul Robbery': {
-    bp: 105,
-    type: 'Psychic',
+  'Sonic Slash': {
+    bp: 0,
+    type: 'Flying',
     category: 'Physical',
+    zp: 160,
+    maxPower: 130
+  },
+  'Soul Robbery': {
+    bp: 90,
+    type: 'Psychic',
+    category: 'Special',
     zp: 180,
     maxPower: 140
   }
 }
 
 const SS: {[name: string]: MoveData} = extend(true, {}, SM, SS_PATCH, RR_PATCH);
-
-const LGPE_MOVES = [
-  'Baddy Bad',
-  'Bouncy Bubble',
-  'Buzzy Buzz',
-  'Freezy Frost',
-  'Glitzy Glow',
-  'Sappy Seed',
-  'Sizzly Slide',
-  'Sparkly Swirl',
-  'Zippy Zap',
-  'Floaty Fall',
-  'Pika Papow',
-  'Splishy Splash',
-  'Veevee Volley',
-];
-for (const m of LGPE_MOVES) {
-  delete SS[m];
-}
 
 export const MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS];
 

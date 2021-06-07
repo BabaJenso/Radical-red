@@ -37,7 +37,7 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-var e_1, _a, e_2, _b;
+var e_1, _a;
 exports.__esModule = true;
 
 var util_1 = require("../util");
@@ -4124,9 +4124,12 @@ var RR_PATCH = {
     'Dragon Hammer': { bp: 100 },
     Explosion: { bp: 150 },
     'False Swipe': { isSword: true },
+    'Fishous Rend': { isBite: false },
     Flash: { bp: 50, type: 'Electric', category: 'Special' },
     'Flash Cannon': { isBullet: true, isPulse: true },
+    'Freezy Frost': { bp: 95 },
     'Fury Cutter': { isSword: true },
+    'Head Charge': { secondaries: true },
     'High Horsepower': { isKick: true },
     'High Jump Kick': { isKick: true },
     Inferno: { bp: 120 },
@@ -4135,9 +4138,12 @@ var RR_PATCH = {
     'Leaf Blade': { isSword: true },
     'Leaf Tornado': { secondaries: false },
     'Low Kick': { isKick: true },
+    'Low Sweep': { bp: 60, isKick: true },
+    'Luster Purge': { bp: 85 },
     'Mega Drain': { bp: 60 },
     'Mega Kick': { isKick: true },
     'Mirror Shot': { secondaries: false },
+    'Mist Ball': { bp: 85 },
     'Mud Bomb': { secondaries: false },
     'Mud-Slap': { bp: 40, secondaries: false },
     'Needle Arm': { bp: 95 },
@@ -4154,6 +4160,7 @@ var RR_PATCH = {
     'Rock Smash': { bp: 60 },
     'Rolling Kick': { isKick: true },
     'Sacred Sword': { isSword: true },
+    'Sappy Seed': { bp: 95 },
     'Secret Sword': { isSword: true },
     'Self-Destruct': { bp: 100 },
     'Shadow Bone': { isBone: true },
@@ -4161,16 +4168,20 @@ var RR_PATCH = {
     'Shadow Punch': { bp: 80 },
     'Shell Side Arm': { bp: 100 },
     Slash: { isSword: true },
+    'Snap Trap': { bp: 100, type: 'Steel' },
     'Snipe Shot': { bp: 70, isBullet: true, isPulse: true },
     'Solar Blade': { isSword: true },
+    'Sparkly Swirl': { bp: 95 },
     'Spike Cannon': { isBullet: true },
     'Stomp': { isKick: true },
     'Sucker Punch': { isPunch: true },
     'Triple Axel': { isKick: true },
     'Triple Kick': { bp: 20, isKick: true },
     'Trop Kick': { isKick: true },
+    'Volt Tackle': { recoil: [1, 4] },
     'Wicked Blow': { isPunch: false },
     'X-Scissor': { isSword: true },
+    'Zippy Zap': { priority: 1 },
     'Aqua Fang': {
         bp: 80,
         type: 'Water',
@@ -4188,43 +4199,22 @@ var RR_PATCH = {
         zp: 180,
         maxPower: 130
     },
-    'Soul Robbery': {
-        bp: 105,
-        type: 'Psychic',
+    'Sonic Slash': {
+        bp: 0,
+        type: 'Flying',
         category: 'Physical',
+        zp: 160,
+        maxPower: 130
+    },
+    'Soul Robbery': {
+        bp: 90,
+        type: 'Psychic',
+        category: 'Special',
         zp: 180,
         maxPower: 140
     }
 };
 var SS = util_1.extend(true, {}, SM, SS_PATCH, RR_PATCH);
-var LGPE_MOVES = [
-    'Baddy Bad',
-    'Bouncy Bubble',
-    'Buzzy Buzz',
-    'Freezy Frost',
-    'Glitzy Glow',
-    'Sappy Seed',
-    'Sizzly Slide',
-    'Sparkly Swirl',
-    'Zippy Zap',
-    'Floaty Fall',
-    'Pika Papow',
-    'Splishy Splash',
-    'Veevee Volley',
-];
-try {
-    for (var LGPE_MOVES_1 = __values(LGPE_MOVES), LGPE_MOVES_1_1 = LGPE_MOVES_1.next(); !LGPE_MOVES_1_1.done; LGPE_MOVES_1_1 = LGPE_MOVES_1.next()) {
-        var m = LGPE_MOVES_1_1.value;
-        delete SS[m];
-    }
-}
-catch (e_1_1) { e_1 = { error: e_1_1 }; }
-finally {
-    try {
-        if (LGPE_MOVES_1_1 && !LGPE_MOVES_1_1.done && (_a = LGPE_MOVES_1["return"])) _a.call(LGPE_MOVES_1);
-    }
-    finally { if (e_1) throw e_1.error; }
-}
 exports.MOVES = [{}, RBY, GSC, ADV, DPP, BW, XY, SM, SS];
 var Moves = (function () {
     function Moves(gen) {
@@ -4323,11 +4313,11 @@ try {
         gen++;
     }
 }
-catch (e_2_1) { e_2 = { error: e_2_1 }; }
+catch (e_1_1) { e_1 = { error: e_1_1 }; }
 finally {
     try {
-        if (MOVES_1_1 && !MOVES_1_1.done && (_b = MOVES_1["return"])) _b.call(MOVES_1);
+        if (MOVES_1_1 && !MOVES_1_1.done && (_a = MOVES_1["return"])) _a.call(MOVES_1);
     }
-    finally { if (e_2) throw e_2.error; }
+    finally { if (e_1) throw e_1.error; }
 }
 //# sourceMappingURL=moves.js.map
