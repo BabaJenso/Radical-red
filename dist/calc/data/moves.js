@@ -4118,6 +4118,7 @@ var RR_PATCH = {
     'Bone Club': { isBone: true },
     'Bone Rush': { isBone: true },
     Chatter: { bp: 80 },
+    Covet: { type: 'Fairy' },
     Cut: { bp: 75, type: 'Steel', isSword: true },
     'Diamond Storm': { category: 'Special' },
     'Double Kick': { isKick: true },
