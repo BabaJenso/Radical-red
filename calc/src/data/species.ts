@@ -8670,7 +8670,7 @@ const SS_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
 };
 
 const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
-  'Abomasnow-Mega': {bs: {df: 105, sd: 105, sp: 45}},
+  'Abomasnow-Mega': {bs: {df: 105, sd: 105, sp: 60}},
   'Absol-Mega': {types: ['Dark', 'Fairy'], abilities: {0: 'Blademaster'}},
   'Alcremie': {otherFormes: ['Alcremie-Mega', 'Alcremie-Gmax']},
   'Altaria': {bs: {hp: 85}},
@@ -8721,7 +8721,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Crobat': {bs: {sa: 90}},
   'Crustle': {bs: {sp: 55}},
   'Cryogonal': {bs: {sa: 110}},
-  'Cursola': {bs: {hp: 80, at: 75, sp: 40}},
+  'Cursola': {bs: {hp: 80, at: 75, sp: 55}},
   'Darmanitan-Galar': {bs: {at: 130}},
   'Decidueye': {bs: {sa: 95, sd: 85, sp: 100}},
   'Dedenne': {bs: {sa: 91}},
@@ -8729,7 +8729,6 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Delibird': {bs: {at: 100, sp: 105}},
   'Dewgong': {bs: {at: 50, sa: 90}},
   'Dialga': {otherFormes: ['Dialga-Primal']},
-  'Dracovish': {bs: {at: 80, sd: 90}},
   'Drampa': {bs: {hp: 103, at: 50}},
   'Drapion': {bs: {at: 80}},
   'Drednaw': {otherFormes: ['Drednaw-Mega', 'Drednaw-Gmax']},
@@ -8738,7 +8737,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Dugtrio-Alola': {bs: {at: 110}},
   'Dunsparce': {bs: {df: 80, sd: 75}},
   'Dustox': {bs: {hp: 80, at: 40, sa: 60}},
-  'Duraludon': {otherFormes: ['Duraludon-Mega', 'Duraludon-Gmax']},
+  'Duraludon': {bs: {hp: 85}, otherFormes: ['Duraludon-Mega', 'Duraludon-Gmax']},
   'Eelektross': {bs: {at: 105, sa: 115}},
   'Eiscue': {bs: {at: 100, sa: 45}},
   'Eiscue-Noice': {bs: {at: 100, sa: 45}},
@@ -8773,7 +8772,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Grapploct': {types: ['Water', 'Fighting']},
   'Grumpig': {bs: {hp: 90}},
   'Gumshoos': {bs: {hp: 98}},
-  'Guzzlord': {bs: {hp: 193, at: 111, df: 73, sd: 73, sp: 23}},
+  'Guzzlord': {bs: {hp: 203, df: 73, sd: 73, sp: 23}},
   'Heatmor': {bs: {at: 90, sp: 100}},
   'Hitmonchan': {bs: {at: 115}},
   'Honchkrow': {bs: {sp: 96}},
@@ -8796,7 +8795,6 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Liepard': {bs: {at: 98, sa: 78}},
   'Linoone': {bs: {hp: 85, at: 85}},
   'Lopunny': {types: ['Normal', 'Fighting']},
-  'Lucario-Mega': {bs: {at: 135}},
   'Lumineon': {bs: {hp: 79, at: 59, sa: 96, sd: 69, sp: 101}},
   'Lunatone': {bs: {sa: 95, sp: 90}},
   'Lurantis': {types: ['Grass', 'Fighting'], bs: {sp: 55}},
@@ -8987,7 +8985,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   'Duraludon-Mega': {
     types: ['Steel', 'Dragon'],
-    bs: {hp: 70, at: 95, df: 140, sa: 140, sd: 90, sp: 95},
+    bs: {hp: 85, at: 95, df: 140, sa: 140, sd: 90, sp: 95},
     weightkg: 40,
     abilities: {0: 'Bad Company'},
     baseSpecies: 'Duraludon'

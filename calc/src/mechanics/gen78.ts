@@ -202,11 +202,9 @@ export function calculateSMSS(
     } else if ((isNormalize = attacker.hasAbility('Normalize'))) { // Boosts any type
       type = 'Normal';
     }
-    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize) {
+    if (isGalvanize || isPixilate || isRefrigerate || isAerilate || isNormalize || isLiquidVoice) {
       desc.attackerAbility = attacker.ability;
       hasAteAbilityTypeChange = true;
-    } else if (isLiquidVoice) {
-      desc.attackerAbility = attacker.ability;
     }
   }
   move.type = type;
