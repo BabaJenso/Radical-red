@@ -8744,6 +8744,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Eldegoss': {bs: {hp: 75, sa: 90}},
   'Electivire': {types: ['Electric', 'Fighting'], bs: {at: 113, sa: 105}},
   'Electrode': {bs: {at: 55, sa: 100}},
+  'Eternatus-Eternamax': {bs: {hp: 140, at: 105, df: 110, sa: 185, sd: 110, sp: 140}, weightkg: 950, abilities: {0: 'Levitate'}},
   'Emolga': {bs: {at: 55, sa: 95}},
   'Exploud': {bs: {at: 81, sp: 73}},
   'Falinks': {types: ['Fighting', 'Bug'], bs: {hp: 75, sa: 60}},

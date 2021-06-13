@@ -457,6 +457,7 @@ const SS = SM.concat([
   'Clover Sweet',
   'Cracked Pot',
   'Eject Pack',
+  'Eternamax Orb',
   'Flower Sweet',
   'Fossilized Bird',
   'Fossilized Dino',
