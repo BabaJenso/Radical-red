@@ -10,6 +10,7 @@
   "devDependencies": {
     "eslint": "^7.25.0",
     "express": "^4.17.1",
+    "gh-pages": "^3.2.1",
     "subpkg": "^4.1.0"
   },
   "optionalDependencies": {
@@ -42,7 +43,8 @@
     "bundle": "subpkg run bundle",
     "build": "subpkg run build && node build view",
     "test": "subpkg run test && npm run build && eslint --cache src --ext js",
-    "postinstall": "subpkg install"
+    "postinstall": "subpkg install",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "subPackages": [
     "calc"
