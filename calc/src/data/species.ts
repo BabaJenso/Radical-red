@@ -8757,6 +8757,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Froslass': {bs: {at: 95, sa: 95}},
   'Frosmoth': {bs: {df: 65}},
   'Furfrou': {bs: {at: 90}},
+  'Furret': {bs: {at: 86}},
   'Garbodor': {bs: {at: 115, sp: 60}, otherFormes: ['Garbodor-Mega', 'Garbodor-Gmax']},
   'Garchomp-Mega': {bs: {df: 105, sp: 102}},
   'Glaceon': {bs: {hp: 80, at: 45, df: 100, sp: 75}},
