@@ -9029,7 +9029,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   'Orbeetle-Mega': {
     types: ['Bug', 'Psychic'],
-    bs: {hp: 60, at: 45, df: 120, sa: 135, sd: 130, sp: 100},
+    bs: {hp: 60, at: 45, df: 125, sa: 135, sd: 130, sp: 100},
     weightkg: 40.8,
     abilities: {0: 'Magic Guard'},
     baseSpecies: 'Orbeetle'
