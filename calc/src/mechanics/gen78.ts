@@ -1118,8 +1118,9 @@ export function calculateAtModsSMSS(
     desc.defenderAbility = defender.ability;
   }
 
-  if (attacker.hasAbility('Bull Rush') && attacker.abilityOn) {
+  if (attacker.hasAbility('Bull Rush') && move.category === 'Physical' && attacker.abilityOn) {
     atMods.push(5325);
+    desc.attackerAbility = attacker.ability;
   }
 
   if (move.named('Pursuit') && field.defenderSide.isSwitching === 'out') {
