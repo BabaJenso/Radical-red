@@ -405,6 +405,7 @@ table.field {
 /* select2 overrides */
 .select2-container .select2-choice > .select2-chosen {
     width: 100%;
+    max-width: 372px;
 }
 .small-select.select2-container .select2-choice {
     font-size: 0.9em;
