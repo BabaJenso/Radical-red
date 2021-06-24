@@ -4137,6 +4137,7 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Diamond Storm': {category: 'Special'},
   'Double Kick': {isKick: true},
   'Dragon Hammer': {bp: 100},
+  'Dual Wingbeat': {zp: 160},
   Explosion: {bp: 150},
   'False Swipe': {isSword: true},
   'Fishous Rend': {isBite: false},
@@ -4219,14 +4220,14 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
     type: 'Flying',
     category: 'Physical',
     zp: 160,
-    maxPower: 130
+    maxPower: 140
   },
   'Soul Robbery': {
-    bp: 90,
+    bp: 100,
     type: 'Psychic',
     category: 'Special',
     zp: 180,
-    maxPower: 140
+    maxPower: 130
   }
 }
 
