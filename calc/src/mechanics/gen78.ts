@@ -23,7 +23,7 @@ import {
   checkInfiltrator,
   checkIntimidate,
   checkIntrepidSword,
-  checkKlutz,
+  checkItem,
   checkMultihitBoost,
   checkSeedBoost,
   computeFinalStats,
@@ -54,21 +54,21 @@ export function calculateSMSS(
   checkAirLock(defender, field);
   checkForecast(attacker, field.weather);
   checkForecast(defender, field.weather);
-  checkKlutz(attacker);
-  checkKlutz(defender);
+  checkItem(attacker, field.isMagicRoom);
+  checkItem(defender, field.isMagicRoom);
   checkSeedBoost(attacker, field);
   checkSeedBoost(defender, field);
+  checkDauntlessShield(attacker);
+  checkDauntlessShield(defender);
 
   computeFinalStats(gen, attacker, defender, field, 'def', 'spd', 'spe');
 
   checkIntimidate(gen, attacker, defender);
   checkIntimidate(gen, defender, attacker);
-  checkDownload(attacker, defender);
-  checkDownload(defender, attacker);
+  checkDownload(attacker, defender, field.isWonderRoom);
+  checkDownload(defender, attacker, field.isWonderRoom);
   checkIntrepidSword(attacker);
   checkIntrepidSword(defender);
-  checkDauntlessShield(attacker);
-  checkDauntlessShield(defender);
 
   computeFinalStats(gen, attacker, defender, field, 'atk', 'spa');
 
@@ -152,7 +152,10 @@ export function calculateSMSS(
     type = gift.t;
     desc.moveType = type;
     desc.attackerItem = attacker.item;
-  } else if (move.named('Nature Power', 'Terrain Pulse')) {
+  } else if (
+    move.named('Nature Power') ||
+    (move.named('Terrain Pulse') && isGrounded(attacker, field))
+  ) {
     type =
       field.hasTerrain('Electric') ? 'Electric'
       : field.hasTerrain('Grassy') ? 'Grass'
@@ -665,7 +668,7 @@ export function calculateBasePowerSMSS(
     desc.moveBP = basePower;
     break;
   case 'Terrain Pulse':
-    basePower = move.bp * (field.terrain ? 2 : 1);
+    basePower = move.bp * (isGrounded(attacker, field) && field.terrain ? 2 : 1);
     desc.moveBP = basePower;
     break;
   case 'Fling':
