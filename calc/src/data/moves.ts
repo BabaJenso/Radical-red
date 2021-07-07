@@ -4141,7 +4141,7 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   Explosion: {bp: 150},
   'False Swipe': {isSword: true},
   'Fishious Rend': {isBite: false},
-  Flash: {bp: 50, type:'Electric', category: 'Special'},
+  Flash: {bp: 60, type:'Electric', category: 'Special'},
   'Flash Cannon': {isBullet:true, isPulse: true},
   'Freezy Frost': {bp: 95},
   'Fury Cutter': {isSword: true},
