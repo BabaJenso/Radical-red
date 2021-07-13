@@ -1109,7 +1109,7 @@ export function calculateAtModsSMSS(
   } else if (
     (attacker.hasAbility('Water Bubble') && move.hasType('Water')) ||
     (attacker.hasAbility('Huge Power', 'Pure Power') && move.category === 'Physical') ||
-    (attacker.hasAbility('Feline Power') && move.category === 'Special')
+    (attacker.hasAbility('Feline Prowess') && move.category === 'Special')
   ) {
     atMods.push(8192);
     desc.attackerAbility = attacker.ability;
