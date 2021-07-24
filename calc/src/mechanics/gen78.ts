@@ -239,8 +239,8 @@ export function calculateSMSS(
     typeEffectiveness = 1;
   } else if (typeEffectiveness === 0 &&
             (defender.hasItem('Ring Target') ||
-            (move.hasType('Poison') && defender.hasAbility('Corrosion')) ||
-            (move.flags.bone && defender.hasAbility('Bone Zone')))) {
+            (move.hasType('Poison') && attacker.hasAbility('Corrosion')) ||
+            (move.flags.bone && attacker.hasAbility('Bone Zone')))) {
     const effectiveness = gen.types.get(toID(move.type))!.effectiveness;
     if (effectiveness[defender.types[0]]! === 0) {
       typeEffectiveness = type2Effectiveness;
