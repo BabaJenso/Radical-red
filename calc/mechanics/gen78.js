@@ -169,6 +169,9 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         else if (defender.types[1] && effectiveness[defender.types[1]] === 0) {
             typeEffectiveness = type1Effectiveness;
         }
+        if (attacker.hasAbility('Bone Zone', 'Corrosion')) {
+            desc.attackerAbility = attacker.ability;
+        }
     }
     if (typeEffectiveness === 0) {
         return result;
