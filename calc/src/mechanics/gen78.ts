@@ -238,14 +238,17 @@ export function calculateSMSS(
     defender.hasItem('Iron Ball') && !defender.hasAbility('Klutz')) {
     typeEffectiveness = 1;
   } else if (typeEffectiveness === 0 &&
-            (defender.hasItem('Ring Target') ||
-            (move.hasType('Poison') && attacker.hasAbility('Corrosion')) ||
-            (move.flags.bone && attacker.hasAbility('Bone Zone')))) {
+    (defender.hasItem('Ring Target') ||
+    (move.hasType('Poison') && attacker.hasAbility('Corrosion')) ||
+    (move.flags.bone && attacker.hasAbility('Bone Zone')))) {
     const effectiveness = gen.types.get(toID(move.type))!.effectiveness;
     if (effectiveness[defender.types[0]]! === 0) {
       typeEffectiveness = type2Effectiveness;
     } else if (defender.types[1] && effectiveness[defender.types[1]]! === 0) {
       typeEffectiveness = type1Effectiveness;
+    }
+    if (attacker.hasAbility('Bone Zone', 'Corrosion')) {
+      desc.attackerAbility = attacker.ability;
     }
   }
 
