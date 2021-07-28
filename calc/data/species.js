@@ -8796,7 +8796,7 @@ var RR_PATCH = {
     'Linoone': { bs: { hp: 85, at: 85 } },
     'Lopunny': { types: ['Normal', 'Fighting'] },
     'Lumineon': { bs: { hp: 79, at: 59, sa: 96, sd: 69, sp: 101 } },
-    'Lunatone': { bs: { sa: 95, sp: 90 } },
+    'Lunatone': { bs: { sa: 105, sp: 90 } },
     'Lurantis': { types: ['Grass', 'Fighting'], bs: { sp: 55 } },
     'Luvdisc': { types: ['Water', 'Fairy'], bs: { sa: 100 } },
     'Luxray': { types: ['Electric', 'Dark'] },
