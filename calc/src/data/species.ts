@@ -9014,7 +9014,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   },
   'Lapras-Mega': {
     types: ['Water', 'Dragon'],
-    bs: {hp: 130, at: 105, df: 90, sa: 120, sd: 105, sp: 70},
+    bs: {hp: 130, at: 105, df: 90, sa: 115, sd: 105, sp: 70},
     weightkg: 220,
     abilities: {0: 'Liquid Voice'},
     baseSpecies: 'Lapras'
