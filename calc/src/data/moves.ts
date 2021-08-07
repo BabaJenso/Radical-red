@@ -4189,6 +4189,7 @@ const RR_PATCH: {[name: string]: DeepPartial<MoveData>} = {
   'Solar Blade': {isSword: true},
   'Sparkly Swirl': {bp: 95},
   'Spike Cannon': {isBullet:true},
+  'Steam Eruption': {bp: 120},
   'Stomp': {isKick: true},
   'Sucker Punch': {isPunch: true},
   'Triple Axel': {isKick: true},
