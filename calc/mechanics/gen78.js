@@ -194,9 +194,11 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         (move.hasType('Water') && defender.hasAbility('Dry Skin', 'Storm Drain', 'Water Absorb')) ||
         (move.hasType('Electric') &&
             defender.hasAbility('Lightning Rod', 'Motor Drive', 'Volt Absorb')) ||
-        (move.hasType('Ground') &&
-            !field.isGravity && !move.named('Thousand Arrows') &&
-            !defender.hasItem('Iron Ball') && defender.hasAbility('Levitate')) ||
+        (move.hasType('Ground') && defender.hasAbility('Levitate') &&
+            !field.isGravity &&
+            !move.named('Thousand Arrows') &&
+            !defender.hasItem('Iron Ball') &&
+            !(attacker.hasAbility('Bone Zone') && move.flags.bone)) ||
         (move.hasType('Rock') && defender.hasAbility('Mountaineer')) ||
         (move.flags.bullet && defender.hasAbility('Bulletproof')) ||
         (move.flags.sound && !move.named('Clangorous Soul') && defender.hasAbility('Soundproof')) ||
@@ -205,6 +207,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         return result;
     }
     if (move.hasType('Ground') && !move.named('Thousand Arrows') &&
+        !(attacker.hasAbility('Bone Zone') && move.flags.bone) &&
         !field.isGravity && defender.hasItem('Air Balloon')) {
         desc.defenderItem = defender.item;
         return result;
