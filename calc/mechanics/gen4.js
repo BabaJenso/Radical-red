@@ -15,10 +15,14 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
 
@@ -26,18 +30,18 @@ var items_1 = require("../items");
 var result_1 = require("../result");
 var util_1 = require("./util");
 function calculateDPP(gen, attacker, defender, move, field) {
-    util_1.checkAirLock(attacker, field);
-    util_1.checkAirLock(defender, field);
-    util_1.checkForecast(attacker, field.weather);
-    util_1.checkForecast(defender, field.weather);
-    util_1.checkItem(attacker);
-    util_1.checkItem(defender);
-    util_1.checkIntimidate(gen, attacker, defender);
-    util_1.checkIntimidate(gen, defender, attacker);
-    util_1.checkDownload(attacker, defender);
-    util_1.checkDownload(defender, attacker);
-    attacker.stats.spe = util_1.getFinalSpeed(gen, attacker, field, field.attackerSide);
-    defender.stats.spe = util_1.getFinalSpeed(gen, defender, field, field.defenderSide);
+    (0, util_1.checkAirLock)(attacker, field);
+    (0, util_1.checkAirLock)(defender, field);
+    (0, util_1.checkForecast)(attacker, field.weather);
+    (0, util_1.checkForecast)(defender, field.weather);
+    (0, util_1.checkItem)(attacker);
+    (0, util_1.checkItem)(defender);
+    (0, util_1.checkIntimidate)(gen, attacker, defender);
+    (0, util_1.checkIntimidate)(gen, defender, attacker);
+    (0, util_1.checkDownload)(attacker, defender);
+    (0, util_1.checkDownload)(defender, attacker);
+    attacker.stats.spe = (0, util_1.getFinalSpeed)(gen, attacker, field, field.attackerSide);
+    defender.stats.spe = (0, util_1.getFinalSpeed)(gen, defender, field, field.defenderSide);
     var desc = {
         attackerName: attacker.name,
         moveName: move.name,
@@ -82,10 +86,10 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.moveBP = basePower;
     }
     else if (move.named('Judgment') && attacker.item && attacker.item.includes('Plate')) {
-        move.type = items_1.getItemBoostType(attacker.item);
+        move.type = (0, items_1.getItemBoostType)(attacker.item);
     }
     else if (move.named('Natural Gift') && attacker.item && attacker.item.includes('Berry')) {
-        var gift = items_1.getNaturalGift(gen, attacker.item);
+        var gift = (0, items_1.getNaturalGift)(gen, attacker.item);
         move.type = gift.t;
         move.bp = gift.p;
         desc.attackerItem = attacker.item;
@@ -97,9 +101,9 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.attackerAbility = attacker.ability;
     }
     var isGhostRevealed = attacker.hasAbility('Scrappy') || field.defenderSide.isForesight;
-    var type1Effectiveness = util_1.getMoveEffectiveness(gen, move, defender.types[0], isGhostRevealed, field.isGravity);
+    var type1Effectiveness = (0, util_1.getMoveEffectiveness)(gen, move, defender.types[0], isGhostRevealed, field.isGravity);
     var type2Effectiveness = defender.types[1]
-        ? util_1.getMoveEffectiveness(gen, move, defender.types[1], isGhostRevealed, field.isGravity)
+        ? (0, util_1.getMoveEffectiveness)(gen, move, defender.types[1], isGhostRevealed, field.isGravity)
         : 1;
     var typeEffectiveness = type1Effectiveness * type2Effectiveness;
     if (typeEffectiveness === 0 && move.hasType('Ground') && defender.hasItem('Iron Ball')) {
@@ -126,7 +130,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         return result;
     }
     desc.HPEVs = defender.evs.hp + " HP";
-    var fixedDamage = util_1.handleFixedDamageMoves(attacker, move);
+    var fixedDamage = (0, util_1.handleFixedDamageMoves)(attacker, move);
     if (fixedDamage) {
         result.damage = fixedDamage;
         return result;
@@ -160,7 +164,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
             desc.moveBP = basePower;
             break;
         case 'Fling':
-            basePower = items_1.getFlingPower(attacker.item);
+            basePower = (0, items_1.getFlingPower)(attacker.item);
             desc.moveBP = basePower;
             desc.attackerItem = attacker.item;
             break;
@@ -181,7 +185,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
             }
             break;
         case 'Punishment':
-            basePower = Math.min(200, 60 + 20 * util_1.countBoosts(gen, defender.boosts));
+            basePower = Math.min(200, 60 + 20 * (0, util_1.countBoosts)(gen, defender.boosts));
             desc.moveBP = basePower;
             break;
         case 'Wake-Up Slap':
@@ -211,7 +215,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         basePower = Math.floor(basePower * 1.1);
         desc.attackerItem = attacker.item;
     }
-    else if (move.hasType(items_1.getItemBoostType(attacker.item)) ||
+    else if (move.hasType((0, items_1.getItemBoostType)(attacker.item)) ||
         (attacker.hasItem('Adamant Orb') &&
             attacker.named('Dialga') &&
             move.hasType('Steel', 'Dragon')) ||
@@ -248,7 +252,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.defenderAbility = defender.ability;
     }
     var attackStat = isPhysical ? 'atk' : 'spa';
-    desc.attackEVs = util_1.getEVDescriptionText(gen, attacker, attackStat, attacker.nature);
+    desc.attackEVs = (0, util_1.getEVDescriptionText)(gen, attacker, attackStat, attacker.nature);
     var attack;
     var attackBoost = attacker.boosts[attackStat];
     var rawAttack = attacker.rawStats[attackStat];
@@ -265,7 +269,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.attackBoost = attackBoost;
     }
     else {
-        attack = util_1.getModifiedStat(rawAttack, attackBoost);
+        attack = (0, util_1.getModifiedStat)(rawAttack, attackBoost);
         desc.attackBoost = attackBoost;
     }
     if (isPhysical && attacker.hasAbility('Pure Power', 'Huge Power')) {
@@ -300,7 +304,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.attackerItem = attacker.item;
     }
     var defenseStat = isPhysical ? 'def' : 'spd';
-    desc.defenseEVs = util_1.getEVDescriptionText(gen, defender, defenseStat, defender.nature);
+    desc.defenseEVs = (0, util_1.getEVDescriptionText)(gen, defender, defenseStat, defender.nature);
     var defense;
     var defenseBoost = defender.boosts[defenseStat];
     var rawDefense = defender.rawStats[defenseStat];
@@ -317,7 +321,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.defenseBoost = defenseBoost;
     }
     else {
-        defense = util_1.getModifiedStat(rawDefense, defenseBoost);
+        defense = (0, util_1.getModifiedStat)(rawDefense, defenseBoost);
         desc.defenseBoost = defenseBoost;
     }
     if (defender.hasAbility('Marvel Scale') && defender.status && isPhysical) {
@@ -408,7 +412,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         }
     }
     var stabMod = 1;
-    if (move.hasType.apply(move, __spreadArray([], __read(attacker.types)))) {
+    if (move.hasType.apply(move, __spreadArray([], __read(attacker.types), false))) {
         if (attacker.hasAbility('Adaptability')) {
             stabMod = 2;
             desc.attackerAbility = attacker.ability;
@@ -433,7 +437,7 @@ function calculateDPP(gen, attacker, defender, move, field) {
         desc.attackerAbility = attacker.ability;
     }
     var berryMod = 1;
-    if (move.hasType(items_1.getBerryResistType(defender.item)) &&
+    if (move.hasType((0, items_1.getBerryResistType)(defender.item)) &&
         (typeEffectiveness > 1 || move.hasType('Normal'))) {
         berryMod = 0.5;
         desc.defenderItem = defender.item;

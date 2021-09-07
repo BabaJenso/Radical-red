@@ -6,26 +6,26 @@ var items_1 = require("../items");
 var result_1 = require("../result");
 var util_2 = require("./util");
 function calculateSMSS(gen, attacker, defender, move, field) {
-    util_2.checkAirLock(attacker, field);
-    util_2.checkAirLock(defender, field);
-    util_2.checkForecast(attacker, field.weather);
-    util_2.checkForecast(defender, field.weather);
-    util_2.checkItem(attacker, field.isMagicRoom);
-    util_2.checkItem(defender, field.isMagicRoom);
-    util_2.checkSeedBoost(attacker, field);
-    util_2.checkSeedBoost(defender, field);
-    util_2.checkDauntlessShield(attacker);
-    util_2.checkDauntlessShield(defender);
-    util_2.computeFinalStats(gen, attacker, defender, field, 'def', 'spd', 'spe');
-    util_2.checkIntimidate(gen, attacker, defender);
-    util_2.checkIntimidate(gen, defender, attacker);
-    util_2.checkDownload(attacker, defender, field.isWonderRoom);
-    util_2.checkDownload(defender, attacker, field.isWonderRoom);
-    util_2.checkIntrepidSword(attacker);
-    util_2.checkIntrepidSword(defender);
-    util_2.computeFinalStats(gen, attacker, defender, field, 'atk', 'spa');
-    util_2.checkInfiltrator(attacker, field.defenderSide);
-    util_2.checkInfiltrator(defender, field.attackerSide);
+    (0, util_2.checkAirLock)(attacker, field);
+    (0, util_2.checkAirLock)(defender, field);
+    (0, util_2.checkForecast)(attacker, field.weather);
+    (0, util_2.checkForecast)(defender, field.weather);
+    (0, util_2.checkItem)(attacker, field.isMagicRoom);
+    (0, util_2.checkItem)(defender, field.isMagicRoom);
+    (0, util_2.checkSeedBoost)(attacker, field);
+    (0, util_2.checkSeedBoost)(defender, field);
+    (0, util_2.checkDauntlessShield)(attacker);
+    (0, util_2.checkDauntlessShield)(defender);
+    (0, util_2.computeFinalStats)(gen, attacker, defender, field, 'def', 'spd', 'spe');
+    (0, util_2.checkIntimidate)(gen, attacker, defender);
+    (0, util_2.checkIntimidate)(gen, defender, attacker);
+    (0, util_2.checkDownload)(attacker, defender, field.isWonderRoom);
+    (0, util_2.checkDownload)(defender, attacker, field.isWonderRoom);
+    (0, util_2.checkIntrepidSword)(attacker);
+    (0, util_2.checkIntrepidSword)(defender);
+    (0, util_2.computeFinalStats)(gen, attacker, defender, field, 'atk', 'spa');
+    (0, util_2.checkInfiltrator)(attacker, field.defenderSide);
+    (0, util_2.checkInfiltrator)(defender, field.attackerSide);
     var desc = {
         attackerName: attacker.name,
         moveName: move.name,
@@ -70,19 +70,19 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         desc.moveType = type;
     }
     else if (move.named('Judgment') && attacker.item && attacker.item.includes('Plate')) {
-        type = items_1.getItemBoostType(attacker.item);
+        type = (0, items_1.getItemBoostType)(attacker.item);
     }
     else if (move.named('Techno Blast') && attacker.item && attacker.item.includes('Drive')) {
-        type = items_1.getTechnoBlast(attacker.item);
+        type = (0, items_1.getTechnoBlast)(attacker.item);
     }
     else if (move.named('Natural Gift') && attacker.item && attacker.item.includes('Berry')) {
-        var gift = items_1.getNaturalGift(gen, attacker.item);
+        var gift = (0, items_1.getNaturalGift)(gen, attacker.item);
         type = gift.t;
         desc.moveType = type;
         desc.attackerItem = attacker.item;
     }
     else if (move.named('Nature Power') ||
-        (move.named('Terrain Pulse') && util_2.isGrounded(attacker, field))) {
+        (move.named('Terrain Pulse') && (0, util_2.isGrounded)(attacker, field))) {
         type =
             field.hasTerrain('Electric') ? 'Electric'
                 : field.hasTerrain('Grassy') ? 'Grass'
@@ -146,9 +146,9 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         desc.attackerAbility = attacker.ability;
     }
     var isGhostRevealed = attacker.hasAbility('Scrappy') || field.defenderSide.isForesight;
-    var type1Effectiveness = util_2.getMoveEffectiveness(gen, move, defender.types[0], isGhostRevealed, field.isGravity);
+    var type1Effectiveness = (0, util_2.getMoveEffectiveness)(gen, move, defender.types[0], isGhostRevealed, field.isGravity);
     var type2Effectiveness = defender.types[1]
-        ? util_2.getMoveEffectiveness(gen, move, defender.types[1], isGhostRevealed, field.isGravity)
+        ? (0, util_2.getMoveEffectiveness)(gen, move, defender.types[1], isGhostRevealed, field.isGravity)
         : 1;
     var typeEffectiveness = type1Effectiveness * type2Effectiveness;
     if (typeEffectiveness === 0 && move.named('Thousand Arrows')) {
@@ -162,7 +162,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         (defender.hasItem('Ring Target') ||
             (move.hasType('Poison') && attacker.hasAbility('Corrosion')) ||
             (move.flags.bone && attacker.hasAbility('Bone Zone')))) {
-        var effectiveness = gen.types.get(util_1.toID(move.type)).effectiveness;
+        var effectiveness = gen.types.get((0, util_1.toID)(move.type)).effectiveness;
         if (effectiveness[defender.types[0]] === 0) {
             typeEffectiveness = type2Effectiveness;
         }
@@ -184,7 +184,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         return result;
     }
     if (field.hasWeather('Strong Winds') && defender.hasType('Flying') &&
-        gen.types.get(util_1.toID(move.type)).effectiveness['Flying'] > 1) {
+        gen.types.get((0, util_1.toID)(move.type)).effectiveness['Flying'] > 1) {
         typeEffectiveness /= 2;
         desc.weather = field.weather;
     }
@@ -212,7 +212,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         desc.defenderItem = defender.item;
         return result;
     }
-    if (move.priority > 0 && field.hasTerrain('Psychic') && util_2.isGrounded(defender, field)) {
+    if (move.priority > 0 && field.hasTerrain('Psychic') && (0, util_2.isGrounded)(defender, field)) {
         desc.terrain = field.terrain;
         return result;
     }
@@ -221,7 +221,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         return result;
     }
     desc.HPEVs = defender.evs.hp + " HP";
-    var fixedDamage = util_2.handleFixedDamageMoves(attacker, move);
+    var fixedDamage = (0, util_2.handleFixedDamageMoves)(attacker, move);
     if (fixedDamage) {
         if (attacker.hasAbility('Parental Bond')) {
             result.damage = [fixedDamage, fixedDamage];
@@ -255,7 +255,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
             if (defender.boosts[stat]) {
                 attacker.boosts[stat] +=
                     attacker.hasAbility('Contrary') ? -defender.boosts[stat] : defender.boosts[stat];
-                attacker.stats[stat] = util_2.getModifiedStat(attacker.rawStats[stat], attacker.boosts[stat]);
+                attacker.stats[stat] = (0, util_2.getModifiedStat)(attacker.rawStats[stat], attacker.boosts[stat]);
             }
         }
     }
@@ -273,7 +273,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         move.category = attackSource.stats.atk > attackSource.stats.spa ? 'Physical' : 'Special';
     }
     var attackStat = move.named('Shell Side Arm') &&
-        util_2.getShellSideArmCategory(attacker, defender) === 'Physical'
+        (0, util_2.getShellSideArmCategory)(attacker, defender) === 'Physical'
         ? 'atk'
         : move.named('Body Press')
             ? 'def'
@@ -282,31 +282,31 @@ function calculateSMSS(gen, attacker, defender, move, field) {
                 : 'atk';
     var defense = calculateDefenseSMSS(gen, attacker, defender, move, field, desc, isCritical);
     var hitsPhysical = move.defensiveCategory === 'Physical' ||
-        (move.named('Shell Side Arm') && util_2.getShellSideArmCategory(attacker, defender) === 'Physical');
+        (move.named('Shell Side Arm') && (0, util_2.getShellSideArmCategory)(attacker, defender) === 'Physical');
     var defenseStat = hitsPhysical ? 'def' : 'spd';
-    var baseDamage = util_2.getBaseDamage(attacker.level, basePower, attack, defense);
+    var baseDamage = (0, util_2.getBaseDamage)(attacker.level, basePower, attack, defense);
     var isSpread = field.gameType !== 'Singles' &&
         ['allAdjacent', 'allAdjacentFoes'].includes(move.target);
     if (isSpread) {
-        baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 3072) / 4096);
+        baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 3072) / 4096);
     }
     if (attacker.hasAbility('Parental Bond (Child)')) {
-        baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 1024) / 4096);
+        baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 1024) / 4096);
     }
     if (attacker.hasAbility('ORAORAORAORA (Child)')) {
-        baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 2048) / 4096);
+        baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 2048) / 4096);
     }
     var noWeatherBoost = defender.hasItem('Utility Umbrella');
     if (!noWeatherBoost && (field.hasWeather('Sun', 'Harsh Sunshine') &&
         move.hasType('Fire')) ||
         (field.hasWeather('Rain', 'Heavy Rain') && move.hasType('Water'))) {
-        baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 6144) / 4096);
+        baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 6144) / 4096);
         desc.weather = field.weather;
     }
     else if (!noWeatherBoost &&
         (field.hasWeather('Sun') && move.hasType('Water')) ||
         (field.hasWeather('Rain') && move.hasType('Fire'))) {
-        baseDamage = util_2.pokeRound(util_2.OF32(baseDamage * 2048) / 4096);
+        baseDamage = (0, util_2.pokeRound)((0, util_2.OF32)(baseDamage * 2048) / 4096);
         desc.weather = field.weather;
     }
     else if (!noWeatherBoost &&
@@ -320,7 +320,7 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         desc.defenderItem = defender.item;
     }
     if (isCritical) {
-        baseDamage = Math.floor(util_2.OF32(baseDamage * 1.5));
+        baseDamage = Math.floor((0, util_2.OF32)(baseDamage * 1.5));
         desc.isCritical = isCritical;
     }
     var stabMod = 4096;
@@ -349,26 +349,26 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         protect = true;
         desc.isProtected = true;
     }
-    var finalMod = util_2.chainMods(finalMods);
+    var finalMod = (0, util_2.chainMods)(finalMods);
     var childDamage;
     if (attacker.hasAbility('Parental Bond') && move.hits === 1 && !isSpread) {
         var child = attacker.clone();
         child.ability = 'Parental Bond (Child)';
-        util_2.checkMultihitBoost(gen, child, defender, move, field, desc);
+        (0, util_2.checkMultihitBoost)(gen, child, defender, move, field, desc);
         childDamage = calculateSMSS(gen, child, defender, move, field).damage;
         desc.attackerAbility = attacker.ability;
     }
     else if (attacker.hasAbility('ORAORAORAORA') && move.hits === 1 && move.flags.punch && !isSpread) {
         var child = attacker.clone();
         child.ability = 'ORAORAORAORA (Child)';
-        util_2.checkMultihitBoost(gen, child, defender, move, field, desc);
+        (0, util_2.checkMultihitBoost)(gen, child, defender, move, field, desc);
         childDamage = calculateSMSS(gen, child, defender, move, field).damage;
         desc.attackerAbility = attacker.ability;
     }
     var damage = [];
     for (var i = 0; i < 16; i++) {
         damage[i] =
-            util_2.getFinalDamage(baseDamage, i, typeEffectiveness, applyBurn, stabMod, finalMod, protect);
+            (0, util_2.getFinalDamage)(baseDamage, i, typeEffectiveness, applyBurn, stabMod, finalMod, protect);
     }
     if (move.dropsStats && move.timesUsed > 1) {
         var simpleMultiplier = attacker.hasAbility('Simple') ? 2 : 1;
@@ -377,12 +377,12 @@ function calculateSMSS(gen, attacker, defender, move, field) {
         var usedWhiteHerb = false;
         var dropCount = attacker.boosts[attackStat];
         var _loop_1 = function (times) {
-            var newAttack = util_2.getModifiedStat(attack, dropCount);
+            var newAttack = (0, util_2.getModifiedStat)(attack, dropCount);
             var damageMultiplier = 0;
             damage = damage.map(function (affectedAmount) {
                 if (times) {
-                    var newBaseDamage = util_2.getBaseDamage(attacker.level, basePower, newAttack, defense);
-                    var newFinalDamage = util_2.getFinalDamage(newBaseDamage, damageMultiplier, typeEffectiveness, applyBurn, stabMod, finalMod, protect);
+                    var newBaseDamage = (0, util_2.getBaseDamage)(attacker.level, basePower, newAttack, defense);
+                    var newFinalDamage = (0, util_2.getFinalDamage)(newBaseDamage, damageMultiplier, typeEffectiveness, applyBurn, stabMod, finalMod, protect);
                     damageMultiplier++;
                     return affectedAmount + newFinalDamage;
                 }
@@ -434,7 +434,7 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             desc.moveBP = basePower;
             break;
         case 'Expanding Force':
-            var isTerrainBoosted = util_2.isGrounded(attacker, field) && field.hasTerrain('Psychic');
+            var isTerrainBoosted = (0, util_2.isGrounded)(attacker, field) && field.hasTerrain('Psychic');
             basePower = move.bp * (isTerrainBoosted ? 1.5 : 1);
             move.target = isTerrainBoosted ? 'allAdjacentFoes' : 'normal';
             desc.moveBP = basePower;
@@ -444,7 +444,7 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             desc.moveBP = basePower;
             break;
         case 'Rising Voltage':
-            basePower = util_2.isGrounded(defender, field) && field.hasTerrain('Electric') ? move.bp * 2 : move.bp;
+            basePower = (0, util_2.isGrounded)(defender, field) && field.hasTerrain('Electric') ? move.bp * 2 : move.bp;
             desc.moveBP = basePower;
             break;
         case 'Gyro Ball':
@@ -456,12 +456,12 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             desc.moveBP = basePower;
             break;
         case 'Punishment':
-            basePower = Math.min(200, 60 + 20 * util_2.countBoosts(gen, defender.boosts));
+            basePower = Math.min(200, 60 + 20 * (0, util_2.countBoosts)(gen, defender.boosts));
             desc.moveBP = basePower;
             break;
         case 'Low Kick':
         case 'Grass Knot':
-            var w = defender.weightkg * util_2.getWeightFactor(defender);
+            var w = defender.weightkg * (0, util_2.getWeightFactor)(defender);
             basePower = w >= 200 ? 120 : w >= 100 ? 100 : w >= 50 ? 80 : w >= 25 ? 60 : w >= 10 ? 40 : 20;
             desc.moveBP = basePower;
             break;
@@ -471,14 +471,14 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             break;
         case 'Heavy Slam':
         case 'Heat Crash':
-            var wr = (attacker.weightkg * util_2.getWeightFactor(attacker)) /
-                (defender.weightkg * util_2.getWeightFactor(defender));
+            var wr = (attacker.weightkg * (0, util_2.getWeightFactor)(attacker)) /
+                (defender.weightkg * (0, util_2.getWeightFactor)(defender));
             basePower = wr >= 5 ? 120 : wr >= 4 ? 100 : wr >= 3 ? 80 : wr >= 2 ? 60 : 40;
             desc.moveBP = basePower;
             break;
         case 'Stored Power':
         case 'Power Trip':
-            basePower = 20 + 20 * util_2.countBoosts(gen, attacker.boosts);
+            basePower = 20 + 20 * (0, util_2.countBoosts)(gen, attacker.boosts);
             desc.moveBP = basePower;
             break;
         case 'Acrobatics':
@@ -508,11 +508,11 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             desc.moveBP = basePower;
             break;
         case 'Terrain Pulse':
-            basePower = move.bp * (util_2.isGrounded(attacker, field) && field.terrain ? 2 : 1);
+            basePower = move.bp * ((0, util_2.isGrounded)(attacker, field) && field.terrain ? 2 : 1);
             desc.moveBP = basePower;
             break;
         case 'Fling':
-            basePower = items_1.getFlingPower(attacker.item);
+            basePower = (0, items_1.getFlingPower)(attacker.item);
             desc.moveBP = basePower;
             desc.attackerItem = attacker.item;
             break;
@@ -530,7 +530,7 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             break;
         case 'Natural Gift':
             if ((_a = attacker.item) === null || _a === void 0 ? void 0 : _a.includes('Berry')) {
-                var gift = items_1.getNaturalGift(gen, attacker.item);
+                var gift = (0, items_1.getNaturalGift)(gen, attacker.item);
                 basePower = gift.p;
                 desc.attackerItem = attacker.item;
                 desc.moveBP = move.bp;
@@ -554,7 +554,7 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
             desc.moveBP = basePower;
             break;
         case 'Lash Out':
-            basePower = move.bp * (util_2.countBoosts(gen, attacker.boosts) < 0 ? 2 : 1);
+            basePower = move.bp * ((0, util_2.countBoosts)(gen, attacker.boosts) < 0 ? 2 : 1);
             desc.moveBP = basePower;
             break;
         case 'Crush Grip':
@@ -578,7 +578,7 @@ function calculateBasePowerSMSS(gen, attacker, defender, move, field, hasAteAbil
         desc.moveBP = move.bp;
     }
     var bpMods = calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePower, hasAteAbilityTypeChange, turnOrder);
-    basePower = util_2.OF16(Math.max(1, util_2.pokeRound((basePower * util_2.chainMods(bpMods)) / 4096)));
+    basePower = (0, util_2.OF16)(Math.max(1, (0, util_2.pokeRound)((basePower * (0, util_2.chainMods)(bpMods)) / 4096)));
     return basePower;
 }
 exports.calculateBasePowerSMSS = calculateBasePowerSMSS;
@@ -594,7 +594,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         defender.item.includes(' Z') ||
         (defender.named('Zacian') && defender.hasItem('Rusted Sword'));
     if (!resistedKnockOffDamage && defender.item) {
-        var item = gen.items.get(util_1.toID(defender.item));
+        var item = gen.items.get((0, util_1.toID)(defender.item));
         resistedKnockOffDamage = !!item.megaEvolves && defender.name.includes(item.megaEvolves);
     }
     var bpMods = [];
@@ -678,7 +678,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         desc.attackerAbility = attacker.ability;
     }
     if (gen.num === 7) {
-        var bp = util_2.pokeRound((basePower * util_2.chainMods(bpMods)) / 4096);
+        var bp = (0, util_2.pokeRound)((basePower * (0, util_2.chainMods)(bpMods)) / 4096);
         if (attacker.hasAbility('Technician') && bp <= 60) {
             bpMods.push(6144);
             desc.attackerAbility = attacker.ability;
@@ -701,7 +701,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         bpMods.push(5120);
         desc.defenderAbility = defender.ability;
     }
-    if (attacker.item && move.hasType(items_1.getItemBoostType(attacker.item))) {
+    if (attacker.item && move.hasType((0, items_1.getItemBoostType)(attacker.item))) {
         bpMods.push(4915);
         desc.attackerItem = attacker.item;
     }
@@ -747,7 +747,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
         desc.moveBP = basePower * 2;
     }
     var terrainMultiplier = gen.num > 7 ? 5325 : 6144;
-    if (util_2.isGrounded(attacker, field)) {
+    if ((0, util_2.isGrounded)(attacker, field)) {
         if (field.hasTerrain('Electric') && move.hasType('Electric')) {
             bpMods.push(terrainMultiplier);
             desc.terrain = field.terrain;
@@ -761,7 +761,7 @@ function calculateBPModsSMSS(gen, attacker, defender, move, field, desc, basePow
             desc.terrain = field.terrain;
         }
     }
-    if (util_2.isGrounded(defender, field)) {
+    if ((0, util_2.isGrounded)(defender, field)) {
         if (field.hasTerrain('Misty') && move.hasType('Dragon')) {
             bpMods.push(2048);
             desc.terrain = field.terrain;
@@ -782,7 +782,7 @@ function calculateAttackSMSS(gen, attacker, defender, move, field, desc, isCriti
         move.category = attackSource.stats.atk > attackSource.stats.spa ? 'Physical' : 'Special';
     }
     var attackStat = move.named('Shell Side Arm') &&
-        util_2.getShellSideArmCategory(attacker, defender) === 'Physical'
+        (0, util_2.getShellSideArmCategory)(attacker, defender) === 'Physical'
         ? 'atk'
         : move.named('Body Press')
             ? 'def'
@@ -791,8 +791,8 @@ function calculateAttackSMSS(gen, attacker, defender, move, field, desc, isCriti
                 : 'atk';
     desc.attackEVs =
         move.named('Foul Play')
-            ? util_2.getEVDescriptionText(gen, defender, attackStat, defender.nature)
-            : util_2.getEVDescriptionText(gen, attacker, attackStat, attacker.nature);
+            ? (0, util_2.getEVDescriptionText)(gen, defender, attackStat, defender.nature)
+            : (0, util_2.getEVDescriptionText)(gen, attacker, attackStat, attacker.nature);
     if (attackSource.boosts[attackStat] === 0 ||
         (isCritical && attackSource.boosts[attackStat] < 0)) {
         attack = attackSource.rawStats[attackStat];
@@ -806,11 +806,11 @@ function calculateAttackSMSS(gen, attacker, defender, move, field, desc, isCriti
         desc.attackBoost = attackSource.boosts[attackStat];
     }
     if (attacker.hasAbility('Hustle') && move.category === 'Physical') {
-        attack = util_2.pokeRound((attack * 3) / 2);
+        attack = (0, util_2.pokeRound)((attack * 3) / 2);
         desc.attackerAbility = attacker.ability;
     }
     var atMods = calculateAtModsSMSS(gen, attacker, defender, move, field, desc);
-    attack = util_2.OF16(Math.max(1, util_2.pokeRound((attack * util_2.chainMods(atMods)) / 4096)));
+    attack = (0, util_2.OF16)(Math.max(1, (0, util_2.pokeRound)((attack * (0, util_2.chainMods)(atMods)) / 4096)));
     return attack;
 }
 exports.calculateAttackSMSS = calculateAttackSMSS;
@@ -908,9 +908,9 @@ function calculateDefenseSMSS(gen, attacker, defender, move, field, desc, isCrit
     if (isCritical === void 0) { isCritical = false; }
     var defense;
     var hitsPhysical = move.defensiveCategory === 'Physical' ||
-        (move.named('Shell Side Arm') && util_2.getShellSideArmCategory(attacker, defender) === 'Physical');
+        (move.named('Shell Side Arm') && (0, util_2.getShellSideArmCategory)(attacker, defender) === 'Physical');
     var defenseStat = hitsPhysical ? 'def' : 'spd';
-    desc.defenseEVs = util_2.getEVDescriptionText(gen, defender, defenseStat, defender.nature);
+    desc.defenseEVs = (0, util_2.getEVDescriptionText)(gen, defender, defenseStat, defender.nature);
     if (defender.boosts[defenseStat] === 0 ||
         (isCritical && defender.boosts[defenseStat] > 0) ||
         move.ignoreDefensive) {
@@ -925,14 +925,14 @@ function calculateDefenseSMSS(gen, attacker, defender, move, field, desc, isCrit
         desc.defenseBoost = defender.boosts[defenseStat];
     }
     if (field.hasWeather('Sand') && defender.hasType('Rock') && !hitsPhysical) {
-        defense = util_2.pokeRound((defense * 3) / 2);
+        defense = (0, util_2.pokeRound)((defense * 3) / 2);
         desc.weather = field.weather;
     }
     if (move.named('Explosion', 'Self-Destruct', 'Misty Explosion')) {
-        defense = util_2.pokeRound(defense / 2);
+        defense = (0, util_2.pokeRound)(defense / 2);
     }
     var dfMods = calculateDfModsSMSS(gen, attacker, defender, move, field, desc, isCritical, hitsPhysical);
-    return util_2.OF16(Math.max(1, util_2.pokeRound((defense * util_2.chainMods(dfMods)) / 4096)));
+    return (0, util_2.OF16)(Math.max(1, (0, util_2.pokeRound)((defense * (0, util_2.chainMods)(dfMods)) / 4096)));
 }
 exports.calculateDefenseSMSS = calculateDefenseSMSS;
 function calculateDfModsSMSS(gen, attacker, defender, move, field, desc, isCritical, hitsPhysical) {
@@ -954,7 +954,7 @@ function calculateDfModsSMSS(gen, attacker, defender, move, field, desc, isCriti
         dfMods.push(8192);
         desc.defenderAbility = defender.ability;
     }
-    if ((defender.hasItem('Eviolite') && ((_a = gen.species.get(util_1.toID(defender.name))) === null || _a === void 0 ? void 0 : _a.nfe)) ||
+    if ((defender.hasItem('Eviolite') && ((_a = gen.species.get((0, util_1.toID)(defender.name))) === null || _a === void 0 ? void 0 : _a.nfe)) ||
         (!hitsPhysical && defender.hasItem('Assault Vest'))) {
         dfMods.push(6144);
         desc.defenderItem = defender.item;
@@ -1056,7 +1056,7 @@ function calculateFinalModsSMSS(gen, attacker, defender, move, field, desc, isCr
         }
         desc.attackerItem = attacker.item;
     }
-    if (move.hasType(items_1.getBerryResistType(defender.item)) &&
+    if (move.hasType((0, items_1.getBerryResistType)(defender.item)) &&
         (typeEffectiveness > 1 || move.hasType('Normal')) &&
         !attacker.hasAbility('Unnerve', 'As One (Glastrier)', 'As One (Spectrier)')) {
         finalMods.push(2048);
