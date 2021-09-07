@@ -8810,6 +8810,7 @@ const RR_PATCH: {[name: string]: DeepPartial<SpeciesData>} = {
   'Masquerain': {types: ['Water', 'Bug'], bs: {hp: 80}},
   'Meganium': {types: ['Grass', 'Fairy']},
   'Meowstic': {bs: {sa: 55}},
+  'Meowstic-F': {bs: {sa: 55}},
   'Mightyena': {bs: {at: 95}},
   'Milotic': {bs: {df: 84, sp: 86}},
   'Miltank': {bs: {at: 85}},
