@@ -8669,7 +8669,7 @@ var SS_PATCH = {
 };
 var RR_PATCH = {
     'Abomasnow-Mega': { bs: { df: 105, sd: 105, sp: 60 } },
-    'Absol-Mega': { types: ['Dark', 'Fairy'], abilities: { 0: 'Blademaster' } },
+    'Absol-Mega': { types: ['Steel', 'Fairy'], abilities: { 0: 'Blademaster' } },
     'Alcremie': { otherFormes: ['Alcremie-Mega', 'Alcremie-Gmax'] },
     'Altaria': { bs: { hp: 85 } },
     'Altaria-Mega': { bs: { hp: 85 } },
